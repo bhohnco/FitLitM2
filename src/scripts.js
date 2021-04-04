@@ -21,6 +21,9 @@ const averageHoursSlept = document.getElementById('averageHoursSlept');
 const averageSleepQuality = document.getElementById('averageSleepQuality');
 const hoursSleptForSelectedWeek = document.getElementById('hoursSleptForSelectedWeek');
 const sleepQualityForSelectedWeek = document.getElementById('sleepQualityForSelectedWeek');
+const stepsByDay = document.getElementById('stepsByDay');
+const activeMinutesByDay = document.getElementById('activeMinutesByDay');
+const milesWalkedByDay = document.getElementById('milesWalkedByDay');
 const picker = datepicker(document.getElementById('date-picker'), {
   onSelect: (instance, date) => {
     if (date) {
@@ -107,4 +110,10 @@ function showSleepData() {
   sleepQualityLastNight.innerText = `Sleep Quality on ${selectedDate}: ${sleep.calculateSleepQualityByDate(selectedDate)}`
   hoursSleptForSelectedWeek.innerText = `Hours Slept For The Week Of ${startDate}: ${sleep.generateHoursSleptByWeek(startDate)}`
   sleepQualityForSelectedWeek.innerText = `Sleep Quality For The Week Of ${startDate}: ${sleep.generateSleepQualityByWeek(startDate)}`
+}
+
+function showActivityData() {
+  stepsByDay.innerText = `Steps Taken On ${selectedDate}: ${activity.}`
+  activeMinutesByDay.innerText =
+  milesWalkedByDay.innerText =
 }

@@ -9,6 +9,11 @@ class Activity {
     return this.userActivityData.filter(user => user.userID === this.user.id);
   }
 
+  returnStepsTaken(selectedDate) {
+    const daySelected = this.userActivity.find(day => day.date === selectedDate);
+    return daySelected.numSteps;
+  }
+
   returnMilesWalked(selectedDate) {
     const daySelected = this.userActivity.find(day => day.date === selectedDate);
     const totalDiatance = daySelected.numSteps * this.user.strideLength;

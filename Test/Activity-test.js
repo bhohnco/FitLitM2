@@ -28,6 +28,10 @@ describe('Activity', () => {
     expect(activity1.buildUserActivityData()).to.deep.equal(activity1.userActivity);
   });
 
+  it('should be able to tell the user how many steps they have taken', () => {
+    expect(activity1.returnStepsTaken(selectedDate)).to.equal(6760);
+  });
+
   it('should be able to tell the user how many miles they have walked', () => {
     expect(activity1.returnMilesWalked(selectedDate)).to.equal('5.51')
   });
