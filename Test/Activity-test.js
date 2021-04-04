@@ -8,16 +8,12 @@ const selectedDate = '2019/06/21'
 const startDate = '2019/06/15'
 
 describe('Activity', () => {
-  let user1, user2, user3, activity1, activity2, activity3, allActivity;
+  let user1, activity1;
 
   beforeEach(() => {
     user1 = new User(UserTestingData[0]);
-    user2 = new User(UserTestingData[1]);
-    user3 = new User(UserTestingData[2]);
     activity1 = new Activity(ActivityTestingData, user1);
-    activity2 = new Activity(ActivityTestingData, user2);
-    activity3 = new Activity(ActivityTestingData, user3);
-    // allActivity = new Activity(ActivityTestingData);
+
   });
 
   it('should be a function', () => {
@@ -53,13 +49,13 @@ describe('Activity', () => {
     expect(activity1.findStepGoalExceeded()).to.deep.equal([ '2019/06/17', '2019/06/20' ])
   })
 
-  it.skip('should tell the user their all time stair climbing record', () => {
-    expect(activity.returnStairClimbingRecord()).to.equal()
+  it('should tell the user their all time stair climbing record', () => {
+    expect(activity1.returnStairClimbingRecord()).to.equal(36)
   })
 
-  it.skip('should be able to calculate the average activity data for all users on a given date', () => {
-    expect(activity.returnAverageStairsClimbed(selectedDate)).to.equal()
-    expect(activity.returnAverageStepsTaken(selectedDate)).to.equal()
-    expect(activity.returnAverageActiveMinutes(selectedDate)).to.equal()
+  it('should be able to calculate the average activity data for all users on a given date', () => {
+    expect(activity1.returnAverageStairsClimbed(selectedDate)).to.equal(15);
+    expect(activity1.returnAverageStepsTaken(selectedDate)).to.equal(8161);
+    expect(activity1.returnAverageActiveMinutes(selectedDate)).to.equal(169);
   });
 })
