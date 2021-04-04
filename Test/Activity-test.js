@@ -1,12 +1,16 @@
 const chai = require('chai');
 const expect = chai.expect;
-const Avtivity = require('../src/Activity');
+const Activity = require('../src/Activity');
+const ActivityTestingData = require('../Test/Activity-TestingData');
 
 describe('Activity', () => {
-  let activity;
+  let activity1, activity2, activity3, allActivity;
 
   beforeEach(() => {
-    activity = new Activity(activityTestData, 1);
+    activity1 = new Activity(ActivityTestingData, 1);
+    activity2 = new Activity(ActivityTestingData, 2);
+    activity3 = new Activity(ActivityTestingData, 3);
+    allActivity = new Activity(ActivityTestingData);
   });
 
   it('should be a function', () => {
@@ -14,40 +18,40 @@ describe('Activity', () => {
   });
 
   it('should be an instance of activity', () => {
-    expect(activity).to.be.an.instanceof(Activity);
+    expect(activity1).to.be.an.instanceof(Activity);
   });
 
   it('should get all activity data for a user by ID', () => {
-    expect(activity.buildUserActivityData()).to.deep.equal(activity.userActivity);
+    expect(activity1.buildUserActivityData()).to.deep.equal(activity1.userActivity);
   });
 
-  it('should be able to tell the user how many miles they have walked', () => {
-    expect(activity.returnMilesWalked().to.equal(//total miles walked for user 1))
+  it.skip('should be able to tell the user how many miles they have walked', () => {
+    expect(activity.returnMilesWalked().to.equal())
   });
 
-  it('should able to tell a user how many minutes they were active on a given day', () => {
-    expect(activity.returnActiveMinutes(selectedDate).to.equal(//active minutes for user 1 on 9/22))
+  it.skip('should able to tell a user how many minutes they were active on a given day', () => {
+    expect(activity.returnActiveMinutes(selectedDate).to.equal())
   });
 
-  it('should tell the user how many active minutes in a given week', () => {
-    expect(activity.returnWeeklyAverageMinutes(startDate).to.equal(//active minues for selected week))
+  it.skip('should tell the user how many active minutes in a given week', () => {
+    expect(activity.returnWeeklyAverageMinutes(startDate).to.equal())
   })
 
-  it('should tell the user if they met their step goal on a given date', () => {
-    expect(activity.calculateStepGoalMet(selectedDate).to.equal(//true or false))
+  it.skip('should tell the user if they met their step goal on a given date', () => {
+    expect(activity.calculateStepGoalMet(selectedDate).to.equal())
   })
 
-  it('should tell the user all days that they exceeded their step goal', () => {
-    expect(activity.findStepGoalExceeded().to.deep.equal(//array of days))
+  it.skip('should tell the user all days that they exceeded their step goal', () => {
+    expect(activity.findStepGoalExceeded().to.deep.equal())
   })
 
-  it('should tell the user their all time stair climbing record', () => {
-    expect(activity.returnStairClimbingRecord().to.equal(//stair climbing record))
+  it.skip('should tell the user their all time stair climbing record', () => {
+    expect(activity.returnStairClimbingRecord().to.equal())
   })
 
-  it('should be able to calculate the average activity data for all users on a given date', () => {
-    expect(activity.returnAverageStairsClimbed(selectedDate).to.equal(//average stairs climbed for all users))
-    expect(activity.returnAverageStepsTaken(selectedDate).to.equal(//average steps taken for all users))
-    expect(activity.returnAverageActiveMinutes(selectedDate).to.equal(//average active minutes for all users))
-  })
+  it.skip('should be able to calculate the average activity data for all users on a given date', () => {
+    expect(activity.returnAverageStairsClimbed(selectedDate).to.equal())
+    expect(activity.returnAverageStepsTaken(selectedDate).to.equal())
+    expect(activity.returnAverageActiveMinutes(selectedDate).to.equal())
+  });
 })
