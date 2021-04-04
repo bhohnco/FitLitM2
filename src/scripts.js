@@ -1,6 +1,7 @@
 const userRepository = new UserRepository(userData);
 const hydration = new Hydration(hydrationData, userRepository.currentUser.id);
 const sleep = new Sleep(sleepData, userRepository.currentUser.id);
+const activity = new Activity(activityData, userRepository.currentUser);
 let selectedDate = '2019/09/22';
 let startDate = '2019/09/16';
 let endDate = '2019/09/22';
@@ -33,6 +34,7 @@ const picker = datepicker(document.getElementById('date-picker'), {
       selectedDate = formattedDate.substring(1);
       showHydrationData();
       showSleepData();
+      showActivityData();
     }
   },
   startDate: new Date(2019, 8, 1),
@@ -61,6 +63,7 @@ const end = datepicker(document.getElementById('dateRangePickerEnd'), {
     endDate = endRange.substring(0, 10).replaceAll('-', '/');
     showHydrationData();
     showSleepData();
+    showActivityData();
    }
   }
 });
@@ -73,6 +76,7 @@ userInfoButton.addEventListener('click', showDropdown);
 function displayUserInfo() {
   showHydrationData();
   showSleepData();
+  showActivityData();
   userNameDisplay.innerText = `Welcome ${userRepository.currentUser.returnFirstName()}`;
   userEmail.innerText = `Email Address: ${userRepository.currentUser.email};`
   userStepGoal.innerText = `Daily Step Goal: ${userRepository.currentUser.dailyStepGoal}`;
@@ -113,7 +117,7 @@ function showSleepData() {
 }
 
 function showActivityData() {
-  stepsByDay.innerText = `Steps Taken On ${selectedDate}: ${activity.}`
-  activeMinutesByDay.innerText =
-  milesWalkedByDay.innerText =
+  stepsByDay.innerText = `Steps Taken On ${selectedDate}: ${activity.returnStepsTaken(selectedDate)}`
+  activeMinutesByDay.innerText = `Minutes Active On ${selectedDate}: ${activity.returnActiveMinutes(selectedDate)}`
+  milesWalkedByDay.innerText = `Miles Walked On ${selectedDate}: ${activity.returnMilesWalked(selectedDate)}`
 }

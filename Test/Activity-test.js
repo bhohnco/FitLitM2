@@ -32,6 +32,10 @@ describe('Activity', () => {
     expect(activity1.returnStepsTaken(selectedDate)).to.equal(6760);
   });
 
+  it('should be able to tell the user how many stairs they have climbed', () => {
+    expect(activity1.returnStairsClimbed(selectedDate)).to.equal(6);
+  });
+
   it('should be able to tell the user how many miles they have walked', () => {
     expect(activity1.returnMilesWalked(selectedDate)).to.equal('5.51')
   });
