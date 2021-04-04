@@ -56,6 +56,16 @@ class Activity {
     }
   }
 
+  findStepGoalExceeded() {
+     const stepGoalExceededDays = [];
+     this.userActivity.forEach((day, i) => {
+       if (this.user.dailyStepGoal < day.numSteps) {
+         stepGoalExceededDays.push(day.date);
+       }
+     });
+     return stepGoalExceededDays;
+  }
+
 }
 
 if (typeof module !== 'undefined') {

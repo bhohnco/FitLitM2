@@ -49,8 +49,8 @@ describe('Activity', () => {
     expect(activity1.calculateStepGoalMet('2019/06/18')).to.equal('You Did Not Meet Your Daily Step Goal')
   })
 
-  it.skip('should tell the user all days that they exceeded their step goal', () => {
-    expect(activity.findStepGoalExceeded()).to.deep.equal()
+  it('should tell the user all days that they exceeded their step goal', () => {
+    expect(activity1.findStepGoalExceeded()).to.deep.equal([ '2019/06/17', '2019/06/20' ])
   })
 
   it.skip('should tell the user their all time stair climbing record', () => {
