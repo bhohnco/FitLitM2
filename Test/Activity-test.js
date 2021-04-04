@@ -29,7 +29,7 @@ describe('Activity', () => {
   });
 
   it('should be able to tell the user how many miles they have walked', () => {
-    expect(activity1.returnMilesWalked()).to.equal('47.75')
+    expect(activity1.returnMilesWalked(selectedDate)).to.equal('5.51')
   });
 
   it('should able to tell a user how many minutes they were active on a given day', () => {
