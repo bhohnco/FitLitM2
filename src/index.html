@@ -51,13 +51,16 @@
             <h3 id='hoursSleptLastNight'> Hours slept last night:</h3>
             <h3 id='sleepQualityLastNight'> Sleep quality last night:</h3>
             <h3 class='hide sleep-info-week' id=hoursSleptForSelectedWeek> Hours Slept For Selected Week:</h3>
-            <div>
-              <canvas id="sleepChart" class="sleep-chart"></canvas>
-            </div>
+<!--            <div>-->
+<!--              <canvas id="sleepChart" class="sleep-chart" width="200" height="200"></canvas>-->
+<!--            </div>-->
             <h3 class='hide sleep-info-week' id=sleepQualityForSelectedWeek> Sleep Quality For Selected Week:</h3>
           </div>
         </section>
       </section>
+      <section class='sleep-chart' id='sleepCardContainerChart'>
+        <canvas id="sleepChart" class="sleep-chart" width="200" height="345"></canvas>
+        </section>
       <section class='card-container-hydration' id='hydrationCardContainer'>
         <section class='main-card' id='hydrationMainCard'>
           <div class='main-card-middle-left'>
@@ -65,19 +68,25 @@
             <h3 id='averageOunces'> Average Daily water intake:</h3>
             <h3 id='selectedDateHydration'> Intake for today:</h3>
             <h3 class='hide sleep-info-week' id='selectedWeekHydration'> Intake for Selected Week:</h3>
-            <br/>
+<!--            <div>-->
+<!--              <canvas id="hydrationChart" class="hydration-chart" width="200" height="200"></canvas>-->
+<!--            </div>-->
+<!--            <br/>-->
           </div>
         </section>
       </section>
-      <section class='card-container-stairs' id='stairsCardContainer'>
-        <section class='main-card' id='stairsMainCard'>
-          <div class='main-card-bottom'>
-            <h2 id='stepContainer'>Steps</h2>
-          </div>
-        </section>
+      <section class='hydration-chart' id='hydrationCardContainerChart'>
+        <canvas id="hydrationChart" class="hydration-chart" width="200" height="345"></canvas>
       </section>
+<!--      <section class='card-container-stairs' id='stairsCardContainer'>-->
+<!--        <section class='main-card' id='stairsMainCard'>-->
+<!--          <div class='main-card-bottom'>-->
+<!--            <h2 id='stepContainer'>Steps</h2>-->
+<!--          </div>-->
+<!--        </section>-->
+<!--      </section>-->
       <script type="text/javascript" src="../node_modules/js-datepicker/dist/datepicker.min.js"></script>
-      <script type="text/javascript" src="../node_modules/chart.js/dist/chart.js"></script>
+      <script src ='https://cdn.jsdelivr.net/npm/chart.js@2.8.0'></script>
       <script type="text/javascript" src="../data/users.js"></script>
       <script type="text/javascript" src="../data/hydration.js"></script>
       <script type="text/javascript" src="../data/sleep.js"></script>
