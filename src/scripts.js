@@ -59,23 +59,24 @@ const end = datepicker(document.getElementById('dateRangePickerEnd'), {
   maxDate: new Date(2019, 8, 22),
   onSelect: (instance, date) => {
     if (date) {
-    let stringifiedRange = JSON.stringify(end.getRange());
-    let splitRange = stringifiedRange.split("\"");
-    let startRange = splitRange[3]
-    let endRange = splitRange[7]
-    startDate = startRange.substring(0, 10).replaceAll('-', '/');
-    endDate = endRange.substring(0, 10).replaceAll('-', '/');
-    showHydrationData();
-    showSleepData();
-    showActivityData();
-   }
+      let stringifiedRange = JSON.stringify(end.getRange());
+      let splitRange = stringifiedRange.split("\"");
+      let startRange = splitRange[3]
+      let endRange = splitRange[7]
+      startDate = startRange.substring(0, 10).replaceAll('-', '/');
+      endDate = endRange.substring(0, 10).replaceAll('-', '/');
+      showHydrationData();
+      showSleepData();
+      showActivityData();
+      // createSleepChart(end);
+    }
   }
 });
 
 
 window.addEventListener('load', displayUserInfo);
 userInfoButton.addEventListener('click', showDropdown);
-dateRangePickerEnd.addEventListener('click', showSleepAndHydrationForWeek)
+// dateRangePickerEnd.addEventListener('click', showSleepAndHydrationForWeek)
 
 
 function displayUserInfo() {
@@ -141,23 +142,15 @@ function calculateStairsClimbedDifferece() {
   }
 }
 
-
-
 function showDropdown() {
   userInfoDropdown.classList.toggle('hide');
-}
-
-function showSleepAndHydrationForWeek() {
-  console.log('hello')
-  selectedWeekHydration.classList.toggle('hide');
-  hoursSleptForSelectedWeek.toggle('hide');
-  sleepQualityForSelectedWeek.toggle('hide');
 }
 
 function showHydrationData() {
   averageOunces.innerText = `Average Daily water intake: ${hydration.calculateAverageOunces()}`
   selectedDateHydration.innerText = `Intake for ${selectedDate}: ${hydration.calculateDailyOunces(selectedDate)} fl oz`
   selectedWeekHydration.innerText = `Intake for the week of ${startDate}: ${hydration.calculateWeeklyOz(startDate)}`
+  createHydrationChart(selectedDate);
 }
 
 function showSleepData() {
@@ -170,45 +163,99 @@ function showSleepData() {
   createSleepChart(selectedDate)
 }
 
-function createSleepChart(selectedDate) {
-  const sleepChart = document.getElementById('sleepChart').getContext('2d');
-  let weeklyHoursSlept = sleep.generateHoursSleptByWeek(selectedDate);
+function showSleepAndHydrationForWeek() {
+  console.log('hello')
+  averageHoursSlept.classList.add('hide');
+  hoursSleptForSelectedWeek.classList.toggle('hide');
+  averageSleepQuality.classList.add('hide');
+  sleepQualityForSelectedWeek.classList.toggle('hide');
+  averageOunces.classList.add('hide');
+  selectedWeekHydration.classList.toggle('hide');
+  console.log('hello13')
+}
 
+function createSleepChart(end) {
+  const sleepChart = document.getElementById('sleepChart').getContext('2d');
+  let weeklyHoursSlept = sleep.generateHoursSleptByWeek(end);
+  console.log(weeklyHoursSlept)
   let sleepDataChart = new Chart(sleepChart, {
     type: 'bar',
+    beginAtZero: true,
+    data:
+        {
+          labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"],
+          datasets: [{
+            axis: 'y',
+            label: 'Hours Slept',
+            data: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+            fill: false,
+            backgroundColor: "#660C60",
+            borderColor: [
+              'rgb(255, 99, 132)',
+              'rgb(255, 159, 64)',
+              'rgb(255, 205, 86)',
+              'rgb(75, 192, 192)',
+              'rgb(54, 162, 235)',
+              'rgb(153, 102, 255)',
+              'rgb(201, 203, 207)'
+            ],
+            borderWidth: 1
+          }]
+        },
+    options: {
+      responsive: true,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 11,
+            stepSize: 20,
+          }
+        }]
+      }
+    }
+  })
+}
+
+function createHydrationChart(end) {
+  const hydrationChart = document.getElementById('hydrationChart').getContext('2d');
+  let weeklyHydration = hydration.calculateWeeklyOz(end);
+
+  let hydrationDataChart = new Chart(hydrationChart, {
+    type: 'bar',
     data: {
-      label: 'Hours Slept',
+      labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"],
       datasets: [{
-        data: `${weeklyHoursSlept}`,
-        backgroundColor: [
-          'rgba(255, 99, 132, .5)',
-          'rgba(54, 162, 235, .5)',
-          'rgba(255, 206, 86, .5)',
-          'rgba(75, 192, 192, .5)',
-          'rgba(153, 102, 255, .5)',
-          'rgba(255, 159, 64, .5)',
-          'rgb(48, 142, 161, .5)'
-        ],
+        axis: 'y',
+        label: 'Weekly Hydration',
+        data: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55],
+        fill: false,
+        backgroundColor: '#2074BF',
         borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-          'rgb(48, 142, 161, 1)'
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)'
         ],
         borderWidth: 1
       }]
     },
     options: {
+      responsive: true,
       scales: {
-        y: {
-          beginAtZero: true
-        }
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            callback(value) {if (value % 1 === 0) {return value;}}
+          }
+        }]
       }
     }
-  });
+  })
 }
 
 function showActivityData() {
@@ -219,4 +266,21 @@ function showActivityData() {
   compareActiveMinutes.innerText = calculateActiveMinuteDifference();
   compareStairsClimbed.innerText = calculateStairsClimbedDifferece();
 }
+
+// const config = {
+//   type: 'bar',
+//   data: data,
+//   options: {
+//     scales: {
+//       y: {
+//         beginAtZero: true
+//       }
+//     }
+//   },
+// };
+//
+// const config1 = {
+//   type: 'doughnut',
+//   data: data,
+// };
 
