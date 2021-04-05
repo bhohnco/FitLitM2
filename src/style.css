@@ -16,7 +16,7 @@ header {
     justify-content: center;
     text-align: center;
     height: 9vw;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
 }
 
 main {
@@ -26,15 +26,16 @@ main {
 
 .user-info-button{
     background-position: center;
-    background-size: 6.6vw;
+    background-size: 8.6vw;
     background-color: white;
     border: none;
     display: inline;
     float: right;
-    height: 6.6vw;
+    height: 8.6vw;
     margin-right: 3.5vw;
     margin-top: -7.6vw;
-    width: 6.6vw;
+    width: 8.6vw;
+    border-radius: 5px;
 }
 
 .user-info-page {
