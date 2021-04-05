@@ -44,8 +44,11 @@
             <h3 id='averageSleepQuality'> Average Sleep Quality:</h3>
             <h3 id='hoursSleptLastNight'> Hours slept last night:</h3>
             <h3 id='sleepQualityLastNight'> Sleep quality last night:</h3>
-            <h3 id=hoursSleptForSelectedWeek> Hours Slept For Selected Week:</h3>
-            <h3 id=sleepQualityForSelectedWeek> Sleep Quality For Selected Week:</h3>
+            <h3 class='hide sleep-info-week' id=hoursSleptForSelectedWeek> Hours Slept For Selected Week:</h3>
+            <div>
+              <canvas id="sleepChart" class="sleep-chart"></canvas>
+            </div>
+            <h3 class='hide sleep-info-week' id=sleepQualityForSelectedWeek> Sleep Quality For Selected Week:</h3>
           </div>
         </section>
       </section>
@@ -55,7 +58,7 @@
             <h2 id='hydrationContainer'>Hydration</h2>
             <h3 id='averageOunces'> Average Daily water intake:</h3>
             <h3 id='selectedDateHydration'> Intake for today:</h3>
-            <h3 id='selectedWeekHydration'> Intake for Selected Week:</h3>
+            <h3 class='hide sleep-info-week' id='selectedWeekHydration'> Intake for Selected Week:</h3>
             <br/>
           </div>
         </section>
@@ -68,6 +71,7 @@
         </section>
       </section>
       <script type="text/javascript" src="../node_modules/js-datepicker/dist/datepicker.min.js"></script>
+      <script type="text/javascript" src="../node_modules/chart.js/dist/chart.js"></script>
       <script type="text/javascript" src="../data/users.js"></script>
       <script type="text/javascript" src="../data/hydration.js"></script>
       <script type="text/javascript" src="../data/sleep.js"></script>
