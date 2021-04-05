@@ -9,12 +9,19 @@ class Activity {
     return this.userActivityData.filter(user => user.userID === this.user.id);
   }
 
-  returnMilesWalked() {
-    let totalSteps = 0;
-    this.userActivity.forEach((day, i) => {
-      totalSteps = totalSteps + day.numSteps;
-    });
-    const totalDiatance = totalSteps * this.user.strideLength;
+  returnStepsTaken(selectedDate) {
+    const daySelected = this.userActivity.find(day => day.date === selectedDate);
+    return daySelected.numSteps;
+  }
+
+  returnStairsClimbed(selectedDate) {
+    const daySelected = this.userActivity.find(day => day.date === selectedDate);
+    return daySelected.flightsOfStairs;
+  }
+
+  returnMilesWalked(selectedDate) {
+    const daySelected = this.userActivity.find(day => day.date === selectedDate);
+    const totalDiatance = daySelected.numSteps * this.user.strideLength;
     const milesWalked = totalDiatance / 5280;
     return milesWalked.toFixed(2)
   }

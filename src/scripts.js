@@ -1,6 +1,7 @@
 const userRepository = new UserRepository(userData);
 const hydration = new Hydration(hydrationData, userRepository.currentUser.id);
 const sleep = new Sleep(sleepData, userRepository.currentUser.id);
+const activity = new Activity(activityData, userRepository.currentUser);
 let selectedDate = '2019/09/22';
 let startDate = '2019/09/16';
 let endDate = '2019/09/22';
@@ -21,6 +22,12 @@ const averageHoursSlept = document.getElementById('averageHoursSlept');
 const averageSleepQuality = document.getElementById('averageSleepQuality');
 const hoursSleptForSelectedWeek = document.getElementById('hoursSleptForSelectedWeek');
 const sleepQualityForSelectedWeek = document.getElementById('sleepQualityForSelectedWeek');
+const stepsByDay = document.getElementById('stepsByDay');
+const activeMinutesByDay = document.getElementById('activeMinutesByDay');
+const milesWalkedByDay = document.getElementById('milesWalkedByDay');
+const compareSteps = document.getElementById('compareSteps');
+const compareActiveMinutes = document.getElementById('compareActiveMinutes');
+const compareStairsClimbed = document.getElementById('compareStairsClimbed');
 const picker = datepicker(document.getElementById('date-picker'), {
   onSelect: (instance, date) => {
     if (date) {
@@ -30,6 +37,7 @@ const picker = datepicker(document.getElementById('date-picker'), {
       selectedDate = formattedDate.substring(1);
       showHydrationData();
       showSleepData();
+      showActivityData();
     }
   },
   startDate: new Date(2019, 8, 1),
@@ -58,6 +66,7 @@ const end = datepicker(document.getElementById('dateRangePickerEnd'), {
     endDate = endRange.substring(0, 10).replaceAll('-', '/');
     showHydrationData();
     showSleepData();
+    showActivityData();
    }
   }
 });
@@ -70,14 +79,15 @@ userInfoButton.addEventListener('click', showDropdown);
 function displayUserInfo() {
   showHydrationData();
   showSleepData();
+  showActivityData();
   userNameDisplay.innerText = `Welcome ${userRepository.currentUser.returnFirstName()}`;
   userEmail.innerText = `Email Address: ${userRepository.currentUser.email};`
   userStepGoal.innerText = `Daily Step Goal: ${userRepository.currentUser.dailyStepGoal}`;
-  averageStepGoal.innerText = calculateStepDifference();
+  averageStepGoal.innerText = calculateStepGoalDifference();
 }
 
 
-function calculateStepDifference() {
+function calculateStepGoalDifference() {
   let averageSteps = userRepository.returnAverageStepGoal();
   let userSteps = userRepository.currentUser.dailyStepGoal;
   let stepDifferece = averageSteps - userSteps;
@@ -89,6 +99,47 @@ function calculateStepDifference() {
     return 'Your step goal is on par with the average user'
   }
 }
+
+function calculateStepDifference() {
+  let averageSteps = activity.returnAverageStepsTaken(selectedDate);
+  let userSteps = activity.returnStepsTaken(selectedDate);
+  let stepDifferece = averageSteps - userSteps;
+  if (stepDifferece < 0) {
+    return `You took ${Math.abs(stepDifferece)} steps more than the average user on ${selectedDate}`
+  } else if (stepDifferece > 0) {
+    return `Your took ${stepDifferece} steps less than the average user on ${selectedDate}`
+  } else {
+    return `Your took the same amount of steps as the average user on ${selectedDate}`
+  }
+}
+
+function calculateActiveMinuteDifference() {
+  let averageMinutes = activity.returnAverageActiveMinutes(selectedDate);
+  let userMinutes = activity.returnActiveMinutes(selectedDate);
+  let minuteDifference = averageMinutes - userMinutes;
+  if (minuteDifference < 0) {
+    return `You were active for ${Math.abs(minuteDifference)} minutes more than the average user on ${selectedDate}`
+  } else if (minuteDifference > 0) {
+    return `Your were active for ${minuteDifference} minutes less than the average user on ${selectedDate}`
+  } else {
+    return `Your were active for the same amount of minutes as the average user on ${selectedDate}`
+  }
+}
+
+function calculateStairsClimbedDifferece() {
+  let averageStairsClimbed = activity.returnAverageStairsClimbed(selectedDate);
+  let userStairsClimbed = activity.returnStairsClimbed(selectedDate);
+  let stairDifference = averageStairsClimbed - userStairsClimbed;
+  if (stairDifference < 0) {
+    return `You climbed ${Math.abs(stairDifference)} more stairs than the average user on ${selectedDate}`
+  } else if (stairDifference > 0) {
+    return `You climbed ${stairDifference} less than the average user on ${selectedDate}`
+  } else {
+    return `You climbed the same amount of stairs as the average user on ${selectedDate}`
+  }
+}
+
+
 
 function showDropdown() {
   userInfoDropdown.classList.toggle('hide');
@@ -107,4 +158,13 @@ function showSleepData() {
   sleepQualityLastNight.innerText = `Sleep Quality on ${selectedDate}: ${sleep.calculateSleepQualityByDate(selectedDate)}`
   hoursSleptForSelectedWeek.innerText = `Hours Slept For The Week Of ${startDate}: ${sleep.generateHoursSleptByWeek(startDate)}`
   sleepQualityForSelectedWeek.innerText = `Sleep Quality For The Week Of ${startDate}: ${sleep.generateSleepQualityByWeek(startDate)}`
+}
+
+function showActivityData() {
+  stepsByDay.innerText = `Steps Taken On ${selectedDate}: ${activity.returnStepsTaken(selectedDate)}`
+  activeMinutesByDay.innerText = `Minutes Active On ${selectedDate}: ${activity.returnActiveMinutes(selectedDate)}`
+  milesWalkedByDay.innerText = `Miles Walked On ${selectedDate}: ${activity.returnMilesWalked(selectedDate)}`
+  compareSteps.innerText = calculateStepDifference();
+  compareActiveMinutes.innerText = calculateActiveMinuteDifference();
+  compareStairsClimbed.innerText = calculateStairsClimbedDifferece();
 }
