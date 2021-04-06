@@ -48,9 +48,6 @@ main {
     z-index: 100;
 }
 
-.hide {
-    display: none;
-}
 
 
 /* MAIN */
@@ -152,4 +149,8 @@ button:hover {
 p {
     font-size: 1.4vw;
     font-weight: 600;
+}
+
+.hide {
+  display: none;
 }
