@@ -68,7 +68,7 @@ const end = datepicker(document.getElementById('dateRangePickerEnd'), {
       showHydrationData();
       showSleepData();
       showActivityData();
-      // createSleepChart(end);
+      createSleepChart(startRange);
     }
   }
 });
@@ -150,7 +150,7 @@ function showHydrationData() {
   averageOunces.innerText = `Average Daily water intake: ${hydration.calculateAverageOunces()}`
   selectedDateHydration.innerText = `Intake for ${selectedDate}: ${hydration.calculateDailyOunces(selectedDate)} fl oz`
   selectedWeekHydration.innerText = `Intake for the week of ${startDate}: ${hydration.calculateWeeklyOz(startDate)}`
-  createHydrationChart(selectedDate);
+  createHydrationChart(startDate);
 }
 
 function showSleepData() {
@@ -160,23 +160,23 @@ function showSleepData() {
   sleepQualityLastNight.innerText = `Sleep Quality on ${selectedDate}: ${sleep.calculateSleepQualityByDate(selectedDate)}`
   hoursSleptForSelectedWeek.innerText = `Hours Slept For The Week Of ${startDate}: ${sleep.generateHoursSleptByWeek(startDate)}`
   sleepQualityForSelectedWeek.innerText = `Sleep Quality For The Week Of ${startDate}: ${sleep.generateSleepQualityByWeek(startDate)}`
-  createSleepChart(selectedDate)
+  createSleepChart(startDate)
 }
 
-function showSleepAndHydrationForWeek() {
-  console.log('hello')
-  averageHoursSlept.classList.add('hide');
-  hoursSleptForSelectedWeek.classList.toggle('hide');
-  averageSleepQuality.classList.add('hide');
-  sleepQualityForSelectedWeek.classList.toggle('hide');
-  averageOunces.classList.add('hide');
-  selectedWeekHydration.classList.toggle('hide');
-  console.log('hello13')
-}
+// function showSleepAndHydrationForWeek() {
+//   console.log('hello')
+//   averageHoursSlept.classList.add('hide');
+//   hoursSleptForSelectedWeek.classList.toggle('hide');
+//   averageSleepQuality.classList.add('hide');
+//   sleepQualityForSelectedWeek.classList.toggle('hide');
+//   averageOunces.classList.add('hide');
+//   selectedWeekHydration.classList.toggle('hide');
+//   console.log('hello13')
+// }
 
-function createSleepChart(end) {
+function createSleepChart(startDate) {
   const sleepChart = document.getElementById('sleepChart').getContext('2d');
-  let weeklyHoursSlept = sleep.generateHoursSleptByWeek(end);
+  let weeklyHoursSlept = sleep.generateHoursSleptByWeek(startDate);
   console.log(weeklyHoursSlept)
   let sleepDataChart = new Chart(sleepChart, {
     type: 'bar',
@@ -187,7 +187,7 @@ function createSleepChart(end) {
           datasets: [{
             axis: 'y',
             label: 'Hours Slept',
-            data: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+            data: `${weeklyHoursSlept}`,
             fill: false,
             backgroundColor: "#660C60",
             borderColor: [
@@ -206,11 +206,21 @@ function createSleepChart(end) {
       responsive: true,
       scales: {
         yAxes: [{
+          gridLines: {
+            display: true,
+            color: "#FFFFFF"
+          },
           ticks: {
             beginAtZero: true,
             min: 0,
-            max: 11,
-            stepSize: 20,
+            max: 12,
+            stepSize: 1,
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            display: true,
+            color: "#FFFFFF"
           }
         }]
       }
@@ -218,10 +228,10 @@ function createSleepChart(end) {
   })
 }
 
-function createHydrationChart(end) {
+function createHydrationChart(startDate) {
   const hydrationChart = document.getElementById('hydrationChart').getContext('2d');
-  let weeklyHydration = hydration.calculateWeeklyOz(end);
-
+  let weeklyHydration = hydration.calculateWeeklyOz(startDate);
+  console.log(weeklyHydration);
   let hydrationDataChart = new Chart(hydrationChart, {
     type: 'bar',
     data: {
@@ -229,7 +239,7 @@ function createHydrationChart(end) {
       datasets: [{
         axis: 'y',
         label: 'Weekly Hydration',
-        data: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55],
+        data: `${weeklyHydration}`,
         fill: false,
         backgroundColor: '#2074BF',
         borderColor: [
@@ -248,9 +258,75 @@ function createHydrationChart(end) {
       responsive: true,
       scales: {
         yAxes: [{
+          gridLines: {
+            display: true,
+            color: "#FFFFFF"
+          },
           ticks: {
             beginAtZero: true,
-            callback(value) {if (value % 1 === 0) {return value;}}
+            min: 0,
+            max: 100,
+            stepSize: 10,
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            display: true,
+            color: "#FFFFFF"
+          }
+        }]
+      }
+    }
+  })
+}
+
+function createActivityChart(startDate) {
+  const activityChart = document.getElementById('activityChart').getContext('2d');
+  let weeklyActivity1 = activity.returnStairsClimbed(startDate);
+  let weeklyActivity2 = activity.returnMilesWalked(startDate);
+  let weeklyActivity3 = activity.returnActiveMinutes(startDate)
+  console.log(weeklyActivity1, weeklyActivity2, weeklyActivity3);
+  let activityDataChart = new Chart(activityChart, {
+    type: 'bar',
+    data: {
+      labels: ["Stairs Climbed", "Miles Walked", "Active Minutes"],
+      datasets: [{
+        axis: 'y',
+        label: 'Daily Activity',
+        data: [`${weeklyActivity1}, ${weeklyActivity2}, ${weeklyActivity3}`],
+        fill: false,
+        backgroundColor: '#E90304',
+        borderColor: [
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        yAxes: [{
+          gridLines: {
+            display: true,
+            color: "#FFFFFF"
+          },
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 300,
+            stepSize: 20,
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            display: true,
+            color: "#FFFFFF"
           }
         }]
       }
@@ -265,6 +341,7 @@ function showActivityData() {
   compareSteps.innerText = calculateStepDifference();
   compareActiveMinutes.innerText = calculateActiveMinuteDifference();
   compareStairsClimbed.innerText = calculateStairsClimbedDifferece();
+  createActivityChart(startDate);
 }
 
 // const config = {
