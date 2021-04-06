@@ -28,6 +28,7 @@ const milesWalkedByDay = document.getElementById('milesWalkedByDay');
 const compareSteps = document.getElementById('compareSteps');
 const compareActiveMinutes = document.getElementById('compareActiveMinutes');
 const compareStairsClimbed = document.getElementById('compareStairsClimbed');
+const weeklyActivityInfo = document.getElementById('weeklyActivityInfo');
 const picker = datepicker(document.getElementById('date-picker'), {
   onSelect: (instance, date) => {
     if (date) {
@@ -167,4 +168,5 @@ function showActivityData() {
   compareSteps.innerText = calculateStepDifference();
   compareActiveMinutes.innerText = calculateActiveMinuteDifference();
   compareStairsClimbed.innerText = calculateStairsClimbedDifferece();
+  weeklyActivityInfo.innerText = activity.generateActivityInfoByWeek(startDate);
 }
