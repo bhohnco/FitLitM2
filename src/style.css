@@ -16,7 +16,7 @@ header {
     justify-content: center;
     text-align: center;
     height: 9vw;
-    margin-bottom: 25px;
+    margin-bottom: 40px;
 }
 
 main {
@@ -26,15 +26,16 @@ main {
 
 .user-info-button{
     background-position: center;
-    background-size: 6.6vw;
+    background-size: 8.6vw;
     background-color: white;
     border: none;
     display: inline;
     float: right;
-    height: 6.6vw;
+    height: 8.6vw;
     margin-right: 3.5vw;
     margin-top: -7.6vw;
-    width: 6.6vw;
+    width: 8.6vw;
+    border-radius: 5px;
 }
 
 .user-info-page {
@@ -58,32 +59,63 @@ main {
     background-color: #E90304;
     grid-column: 1 / 3;
     grid-row: 1;
+    font-size: 10px;
     Width: 407px;
     Height: 156px;
     margin: .5vw;
     border-radius: 5px;
 }
 
+.activity-chart {
+    grid-column: 1 / 3;
+    /*color: white;*/
+    grid-row: 2;
+    Width: 407px;
+    height: 200px;
+    margin: .5vw;
+    border-radius: 5px;
+}
+
 .card-container-sleep {
-    background-color: #660C60;
+    background-image: url("../assets/Sleep_ 1.png");
+    background-position: center;
     grid-column: 1;
-    grid-row: 2 / 5;
+    grid-row: 3 / 5;
+    font-size: 12px;
     width: 193px;
     height: 305px;
     margin: 1.5vw;
+    border-radius: 5px;
+}
+
+.sleep-chart {
+    grid-column: 2;
+    grid-row: 3 / 5;
+    width: 193px;
+    height: 305px;
+    margin: 0.5vw;
     border-radius: 5px;
 }
 
 .card-container-hydration {
     background-color: #2074BF;
     grid-column: 2;
-    grid-row: 2 / 5;
+    grid-row: 6;
+    font-size: 12px;
     width: 193px;
     height: 305px;
     margin: 1.5vw;
     border-radius: 5px;
 }
 
+.hydration-chart {
+    grid-column: 1;
+    grid-row: 6;
+    width: 193px;
+    height: 305px;
+    margin: 0.5vw;
+    border-radius: 5px;
+}
 
 .card-container-stairs {
     background-color: #C851AF;
