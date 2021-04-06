@@ -7,7 +7,6 @@ const userTestingData = require ('../Test/User-TestingData.js');
 describe('User', () => {
   let user, userRepository;
   beforeEach(() => {
-    userRepository = new UserRepository()
     user = new User(userTestingData[0])
   });
 
