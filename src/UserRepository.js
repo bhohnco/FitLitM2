@@ -1,5 +1,3 @@
-
-
 class UserRepository {
   constructor(userData) {
     this.userData = userData;
@@ -23,7 +21,7 @@ class UserRepository {
 
   returnUserData(id) {
     let currentUserData;
-    userRepository.userData.forEach((userDataObject, i) => {
+    this.userData.forEach((userDataObject, i) => {
       if (userDataObject.id === id) {
         currentUserData = userDataObject;
       }
@@ -33,10 +31,10 @@ class UserRepository {
 
   returnAverageStepGoal() {
     let totalUserStepGoal = 0;
-    userRepository.users.forEach((user, i) => {
+    this.users.forEach((user, i) => {
       totalUserStepGoal = totalUserStepGoal + user.dailyStepGoal;
     });
-    let averageStepGoal = totalUserStepGoal/userRepository.users.length;
+    let averageStepGoal = totalUserStepGoal/this.users.length;
     return Math.round(averageStepGoal);
   }
 

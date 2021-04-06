@@ -50,8 +50,8 @@ class Sleep {
     let day2 = this.userSleep[findStartingDate + 1];
     let day1 = this.userSleep[findStartingDate]
     if (day7) {
-      return [day7.hoursSlept, day6.hoursSlept, day5.hoursSlept, day4.hoursSlept,
-        day3.hoursSlept, day2.hoursSlept, day1.hoursSlept];
+      return [day1.hoursSlept, day2.hoursSlept, day3.hoursSlept, day4.hoursSlept,
+        day5.hoursSlept, day6.hoursSlept, day7.hoursSlept];
     } else {
       return 'Please select a valid week'
     }
@@ -73,8 +73,8 @@ class Sleep {
     let day2 = this.userSleep[findStartingDate + 1];
     let day1 = this.userSleep[findStartingDate];
     if (day7) {
-      return [day7.sleepQuality, day6.sleepQuality, day5.sleepQuality, day4.sleepQuality,
-        day3.sleepQuality, day2.sleepQuality, day1.sleepQuality];
+      return [day1.sleepQuality, day2.sleepQuality, day3.sleepQuality, day4.sleepQuality,
+        day5.sleepQuality, day6.sleepQuality, day7.sleepQuality];
     } else {
       return 'Please select a valid week'
     }

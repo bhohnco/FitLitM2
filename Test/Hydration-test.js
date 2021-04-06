@@ -5,7 +5,7 @@ const hydrationTestData = require ('../Test/Hydration-TestingData');
 
 describe('Hydration', () => {
   let hydrate1, hydrate2;
-  
+
   beforeEach( () => {
     hydrate1 = new Hydration(hydrationTestData, 1);
     hydrate2 = new Hydration(hydrationTestData, 2);
@@ -37,8 +37,8 @@ describe('Hydration', () => {
   });
 
   it('should calculate the weekly consumed ounce by date', () => {
-    expect(hydrate1.calculateWeeklyOz("2019/06/15")).to.deep.equal([ 50, 50, 91, 61, 96, 69, 37 ])
-    expect(hydrate2.calculateWeeklyOz("2019/06/18")).to.deep.equal([ 91, 41, 12, 45, 32, 91, 9]);
+    expect(hydrate1.calculateWeeklyOz("2019/06/15")).to.deep.equal([ 37, 69, 96, 61, 91, 50, 50 ])
+    expect(hydrate2.calculateWeeklyOz("2019/06/18")).to.deep.equal([ 9, 91, 32, 45, 12, 41, 91]);
   });
-  
+
 });
