@@ -51,26 +51,37 @@ const start = datepicker(document.getElementById('dateRangePickerStart'), {
   startDate: new Date(2019, 8, 1),
   minDate: new Date(2019, 5, 15),
   maxDate: new Date(2019, 8, 22),
-});
-const end = datepicker(document.getElementById('dateRangePickerEnd'), {
-  id: 'dateRangePicker',
-  startDate: new Date(2019, 8, 1),
-  minDate: new Date(2019, 5, 15),
-  maxDate: new Date(2019, 8, 22),
   onSelect: (instance, date) => {
     if (date) {
-    let stringifiedRange = JSON.stringify(end.getRange());
-    let splitRange = stringifiedRange.split("\"");
-    let startRange = splitRange[3]
-    let endRange = splitRange[7]
-    startDate = startRange.substring(0, 10).replaceAll('-', '/');
-    endDate = endRange.substring(0, 10).replaceAll('-', '/');
+      let stringifiedDateAndTime = JSON.stringify(date);
+      let stringifiedDate = stringifiedDateAndTime.split('T')[0];
+      let formattedDate = stringifiedDate.replaceAll('-', '/');
+    startDate = formattedDate.substring(1);
     showHydrationData();
     showSleepData();
     showActivityData();
    }
   }
 });
+// const end = datepicker(document.getElementById('dateRangePickerEnd'), {
+//   id: 'dateRangePicker',
+//   startDate: new Date(2019, 8, 1),
+//   minDate: new Date(2019, 5, 15),
+//   maxDate: new Date(2019, 8, 22),
+//   onSelect: (instance, date) => {
+//     if (date) {
+//     let stringifiedRange = JSON.stringify(end.getRange());
+//     let splitRange = stringifiedRange.split("\"");
+//     let startRange = splitRange[3]
+//     let endRange = splitRange[7]
+//     startDate = startRange.substring(0, 10).replaceAll('-', '/');
+//     endDate = endRange.substring(0, 10).replaceAll('-', '/');
+//     showHydrationData();
+//     showSleepData();
+//     showActivityData();
+//    }
+//   }
+// });
 
 window.addEventListener('load', displayUserInfo);
 userInfoButton.addEventListener('click', showDropdown);
