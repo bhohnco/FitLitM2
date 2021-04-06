@@ -47,7 +47,7 @@ class Activity {
     let day2 = this.userActivity[findStartingDate + 1];
     let day1 = this.userActivity[findStartingDate];
     if (day7) {
-    const average = [day7.minutesActive + day6.minutesActive + day5.minutesActive + day4.minutesActive + day3.minutesActive + day2.minutesActive + day1.minutesActive] / 7;
+    const average = [day1.minutesActive + day2.minutesActive + day3.minutesActive + day4.minutesActive + day5.minutesActive + day6.minutesActive + day7.minutesActive] / 7;
     return Math.round(average);
   } else {
     return "Please select a valid week"
@@ -119,12 +119,12 @@ class Activity {
     let day2 = this.userActivity[findStartingDate + 1];
     let day1 = this.userActivity[findStartingDate]
     if (day7) {
-      return [[day7.numSteps, day6.numSteps, day5.numSteps, day4.numSteps,
-        day3.numSteps, day2.numSteps, day1.numSteps],
-        [day7.flightsOfStairs, day6.flightsOfStairs, day5.flightsOfStairs, day4.flightsOfStairs,
-          day3.flightsOfStairs, day2.flightsOfStairs, day1.flightsOfStairs],
-          [day7.minutesActive, day6.minutesActive, day5.minutesActive, day4.minutesActive,
-            day3.minutesActive, day2.minutesActive, day1.minutesActive]];
+      return [[day1.numSteps, day2.numSteps, day3.numSteps, day4.numSteps,
+        day5.numSteps, day6.numSteps, day7.numSteps],
+        [day1.flightsOfStairs, day2.flightsOfStairs, day3.flightsOfStairs, day4.flightsOfStairs,
+          day5.flightsOfStairs, day6.flightsOfStairs, day7.flightsOfStairs],
+          [day1.minutesActive, day2.minutesActive, day3.minutesActive, day4.minutesActive,
+            day5.minutesActive, day6.minutesActive, day7.minutesActive]];
     } else {
       return 'Please select a valid week'
     }

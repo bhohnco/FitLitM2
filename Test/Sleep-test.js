@@ -51,13 +51,13 @@ describe('Sleep', () => {
   });
 
   it('should generate the weekly hours slept by date', () => {
-    expect(sleep1.generateHoursSleptByWeek("2019/06/15")).to.deep.equal([ 7.8, 9.3, 10.7, 10.4, 8, 4.1, 6.1 ])
-    expect(sleep2.generateHoursSleptByWeek("2019/06/15")).to.deep.equal([ 4.3, 10.1, 9.6, 10.8, 5.7, 7.5, 7 ]);
+    expect(sleep1.generateHoursSleptByWeek("2019/06/15")).to.deep.equal([ 6.1, 4.1, 8, 10.4, 10.7, 9.3, 7.8 ])
+    expect(sleep2.generateHoursSleptByWeek("2019/06/15")).to.deep.equal([ 7, 7.5, 5.7, 10.8, 9.6, 10.1, 4.3 ]);
   });
 
   it('should generate the weekly sleep quality by date', () => {
-    expect(sleep1.generateSleepQualityByWeek("2019/06/15")).to.deep.equal([ 4.2, 1.2, 1.2, 3.1, 2.6, 3.8, 2.2 ])
-    expect(sleep3.generateSleepQualityByWeek("2019/06/15")).to.deep.equal([ 3.7, 1.2, 3.4, 2.6, 4.9, 3.4, 4.7 ]);
+    expect(sleep1.generateSleepQualityByWeek("2019/06/15")).to.deep.equal([ 2.2, 3.8, 2.6, 3.1, 1.2, 1.2, 4.2 ])
+    expect(sleep3.generateSleepQualityByWeek("2019/06/15")).to.deep.equal([ 4.7, 3.4, 4.9, 2.6, 3.4, 1.2, 3.7 ]);
   });
 
   it('should calculate the average of all users sleep quality', () => {

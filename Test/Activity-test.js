@@ -74,7 +74,7 @@ describe('Activity', () => {
   });
 
   it('should be able to calculate activity data for a user for a given week', () => {
-    expect(activity1.generateActivityInfoByWeek(startDate)).to.deep.equal([[ 6760, 14478, 8429,  4419, 14329,  6637, 3577 ],
-       [ 6, 12,  2, 33, 18, 36, 16 ], [ 135, 140, 275, 165, 168, 175, 140]]);
+    expect(activity1.generateActivityInfoByWeek(startDate)).to.deep.equal([[ 3577,  6637, 14329,  4419, 8429, 14478, 6760 ],
+       [ 16, 36, 18, 33, 2, 12,  6 ], [ 140, 175, 168, 165, 275, 140, 135]]);
   });
 })
