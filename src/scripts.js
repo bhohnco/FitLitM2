@@ -5,7 +5,7 @@ const activity = new Activity(activityData, userRepository.currentUser);
 let selectedDate = '2019/09/22';
 let startDate = '2019/09/16';
 let endDate = '2019/09/22';
-// let Chart = require('chart.js');
+
 
 const userInfoButton = document.getElementById('userinfoButton');
 const userInfoDropdown = document.getElementById('userInfoPage');
@@ -29,6 +29,7 @@ const milesWalkedByDay = document.getElementById('milesWalkedByDay');
 const compareSteps = document.getElementById('compareSteps');
 const compareActiveMinutes = document.getElementById('compareActiveMinutes');
 const compareStairsClimbed = document.getElementById('compareStairsClimbed');
+const weeklyActivityInfo = document.getElementById('weeklyActivityInfo');
 const picker = datepicker(document.getElementById('date-picker'), {
   onSelect: (instance, date) => {
     if (date) {
@@ -51,27 +52,37 @@ const start = datepicker(document.getElementById('dateRangePickerStart'), {
   startDate: new Date(2019, 8, 1),
   minDate: new Date(2019, 5, 15),
   maxDate: new Date(2019, 8, 22),
-});
-const end = datepicker(document.getElementById('dateRangePickerEnd'), {
-  id: 'dateRangePicker',
-  startDate: new Date(2019, 8, 1),
-  minDate: new Date(2019, 5, 15),
-  maxDate: new Date(2019, 8, 22),
   onSelect: (instance, date) => {
     if (date) {
-      let stringifiedRange = JSON.stringify(end.getRange());
-      let splitRange = stringifiedRange.split("\"");
-      let startRange = splitRange[3]
-      let endRange = splitRange[7]
-      startDate = startRange.substring(0, 10).replaceAll('-', '/');
-      endDate = endRange.substring(0, 10).replaceAll('-', '/');
-      showHydrationData();
-      showSleepData();
-      showActivityData();
-      createSleepChart(startRange);
-    }
+      let stringifiedDateAndTime = JSON.stringify(date);
+      let stringifiedDate = stringifiedDateAndTime.split('T')[0];
+      let formattedDate = stringifiedDate.replaceAll('-', '/');
+    startDate = formattedDate.substring(1);
+    showHydrationData();
+    showSleepData();
+    showActivityData();
+   }
   }
 });
+// const end = datepicker(document.getElementById('dateRangePickerEnd'), {
+//   id: 'dateRangePicker',
+//   startDate: new Date(2019, 8, 1),
+//   minDate: new Date(2019, 5, 15),
+//   maxDate: new Date(2019, 8, 22),
+//   onSelect: (instance, date) => {
+//     if (date) {
+//     let stringifiedRange = JSON.stringify(end.getRange());
+//     let splitRange = stringifiedRange.split("\"");
+//     let startRange = splitRange[3]
+//     let endRange = splitRange[7]
+//     startDate = startRange.substring(0, 10).replaceAll('-', '/');
+//     endDate = endRange.substring(0, 10).replaceAll('-', '/');
+//     showHydrationData();
+//     showSleepData();
+//     showActivityData();
+//    }
+//   }
+// });
 
 
 window.addEventListener('load', displayUserInfo);
@@ -161,6 +172,17 @@ function showSleepData() {
   hoursSleptForSelectedWeek.innerText = `Hours Slept For The Week Of ${startDate}: ${sleep.generateHoursSleptByWeek(startDate)}`
   sleepQualityForSelectedWeek.innerText = `Sleep Quality For The Week Of ${startDate}: ${sleep.generateSleepQualityByWeek(startDate)}`
   createSleepChart(startDate)
+}
+
+function showActivityData() {
+  stepsByDay.innerText = `Steps Taken On ${selectedDate}: ${activity.returnStepsTaken(selectedDate)}`
+  activeMinutesByDay.innerText = `Minutes Active On ${selectedDate}: ${activity.returnActiveMinutes(selectedDate)}`
+  milesWalkedByDay.innerText = `Miles Walked On ${selectedDate}: ${activity.returnMilesWalked(selectedDate)}`
+  compareSteps.innerText = calculateStepDifference();
+  compareActiveMinutes.innerText = calculateActiveMinuteDifference();
+  compareStairsClimbed.innerText = calculateStairsClimbedDifferece();
+  weeklyActivityInfo.innerText = activity.generateActivityInfoByWeek(startDate);
+  createActivityChart(startDate);
 }
 
 // function showSleepAndHydrationForWeek() {
@@ -334,30 +356,5 @@ function createActivityChart(startDate) {
   })
 }
 
-function showActivityData() {
-  stepsByDay.innerText = `Steps Taken On ${selectedDate}: ${activity.returnStepsTaken(selectedDate)}`
-  activeMinutesByDay.innerText = `Minutes Active On ${selectedDate}: ${activity.returnActiveMinutes(selectedDate)}`
-  milesWalkedByDay.innerText = `Miles Walked On ${selectedDate}: ${activity.returnMilesWalked(selectedDate)}`
-  compareSteps.innerText = calculateStepDifference();
-  compareActiveMinutes.innerText = calculateActiveMinuteDifference();
-  compareStairsClimbed.innerText = calculateStairsClimbedDifferece();
-  createActivityChart(startDate);
-}
 
-// const config = {
-//   type: 'bar',
-//   data: data,
-//   options: {
-//     scales: {
-//       y: {
-//         beginAtZero: true
-//       }
-//     }
-//   },
-// };
-//
-// const config1 = {
-//   type: 'doughnut',
-//   data: data,
-// };
 
