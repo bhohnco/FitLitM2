@@ -199,9 +199,9 @@ function showActivityData() {
 function createSleepChart(startDate) {
   const sleepChart = document.getElementById('sleepChart').getContext('2d');
   let weeklyHoursSlept = sleep.generateHoursSleptByWeek(startDate);
-  console.log(weeklyHoursSlept)
+  console.log(weeklyHoursSlept, "hourSlept")
   let sleepDataChart = new Chart(sleepChart, {
-    type: 'bar',
+    type: 'line',
     beginAtZero: true,
     data:
         {
@@ -209,7 +209,7 @@ function createSleepChart(startDate) {
           datasets: [{
             axis: 'y',
             label: 'Hours Slept',
-            data: `${weeklyHoursSlept}`,
+            data: weeklyHoursSlept,
             fill: false,
             backgroundColor: "#660C60",
             borderColor: [
@@ -255,15 +255,14 @@ function createHydrationChart(startDate) {
   let weeklyHydration = hydration.calculateWeeklyOz(startDate);
   console.log(weeklyHydration);
   let hydrationDataChart = new Chart(hydrationChart, {
-    type: 'bar',
+    type: 'line',
     data: {
       labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"],
       datasets: [{
         axis: 'y',
         label: 'Weekly Hydration',
-        data: `${weeklyHydration}`,
+        data: weeklyHydration,
         fill: false,
-        backgroundColor: '#2074BF',
         borderColor: [
           'rgb(255, 99, 132)',
           'rgb(255, 159, 64)',
@@ -315,7 +314,7 @@ function createActivityChart(startDate) {
       datasets: [{
         axis: 'y',
         label: 'Daily Activity',
-        data: [`${weeklyActivity1}, ${weeklyActivity2}, ${weeklyActivity3}`],
+        data: weeklyActivity1, weeklyActivity2, weeklyActivity3,
         fill: false,
         backgroundColor: '#E90304',
         borderColor: [
