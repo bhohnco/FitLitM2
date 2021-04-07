@@ -6,7 +6,6 @@ let selectedDate = '2019/09/22';
 let startDate = '2019/09/16';
 
 
-
 const userInfoButton = document.getElementById('userinfoButton');
 const userInfoDropdown = document.getElementById('userInfoPage');
 const userEmail = document.getElementById('userinfoEmail');
@@ -17,16 +16,12 @@ const averageOunces = document.getElementById('averageOunces')
 const selectedDateHydration = document.getElementById('selectedDateHydration');
 const averageHoursSlept = document.getElementById('averageHoursSlept');
 const averageSleepQuality = document.getElementById('averageSleepQuality');
-const hoursSleptForSelectedWeek = document.getElementById('hoursSleptForSelectedWeek');
-const sleepQualityForSelectedWeek = document.getElementById('sleepQualityForSelectedWeek');
-const dateRangePickerEnd = document.getElementById('dateRangePickerEnd');
 const stepsByDay = document.getElementById('stepsByDay');
 const activeMinutesByDay = document.getElementById('activeMinutesByDay');
 const milesWalkedByDay = document.getElementById('milesWalkedByDay');
 const compareSteps = document.getElementById('compareSteps');
 const compareActiveMinutes = document.getElementById('compareActiveMinutes');
 const compareStairsClimbed = document.getElementById('compareStairsClimbed');
-const weeklyActivityInfo = document.getElementById('weeklyActivityInfo');
 const stepChartContainer = document.getElementById('stepChartContainer');
 const stairChartContainer = document.getElementById('stairChartContainer');
 const activeMinutesChartContainer = document.getElementById('activeMinutesChartContainer');
@@ -60,11 +55,11 @@ const start = datepicker(document.getElementById('dateRangePickerStart'), {
       let stringifiedDateAndTime = JSON.stringify(date);
       let stringifiedDate = stringifiedDateAndTime.split('T')[0];
       let formattedDate = stringifiedDate.replaceAll('-', '/');
-    startDate = formattedDate.substring(1);
-    showHydrationData();
-    showSleepData();
-    showActivityData();
-   }
+      startDate = formattedDate.substring(1);
+      showHydrationData();
+      showSleepData();
+      showActivityData();
+    }
   }
 });
 
@@ -74,7 +69,7 @@ userInfoButton.addEventListener('click', showDropdown);
 showSteps.addEventListener('click', showStepChart);
 showStairs.addEventListener('click', showStairChart);
 showActiveMinutes.addEventListener('click', showActiveMinutesChart)
-// dateRangePickerEnd.addEventListener('click', showSleepAndHydrationForWeek)
+
 
 
 function displayUserInfo() {
@@ -86,7 +81,6 @@ function displayUserInfo() {
   userStepGoal.innerText = `Daily Step Goal: ${userRepository.currentUser.dailyStepGoal}`;
   averageStepGoal.innerText = calculateStepGoalDifference();
 }
-
 
 function calculateStepGoalDifference() {
   let averageSteps = userRepository.returnAverageStepGoal();
@@ -169,17 +163,6 @@ function showActivityData() {
   createActivityChart(startDate);
 }
 
-// function showSleepAndHydrationForWeek() {
-//   console.log('hello')
-//   averageHoursSlept.classList.add('hide');
-//   hoursSleptForSelectedWeek.classList.toggle('hide');
-//   averageSleepQuality.classList.add('hide');
-//   sleepQualityForSelectedWeek.classList.toggle('hide');
-//   averageOunces.classList.add('hide');
-//   selectedWeekHydration.classList.toggle('hide');
-//   console.log('hello13')
-// }
-
 function showStepChart() {
   stepChartContainer.classList.remove('hide');
   stairChartContainer.classList.add('hide');
@@ -214,13 +197,7 @@ function createActivityChart(startDate) {
         fill: false,
         backgroundColor: '#E90304',
         borderColor: [
-          'rgb(255, 99, 132)',
-          'rgb(255, 159, 64)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(54, 162, 235)',
-          'rgb(153, 102, 255)',
-          'rgb(201, 203, 207)'
+          'rgb(145,21,43)'
         ],
         borderWidth: 1
       }]
@@ -238,18 +215,24 @@ function createActivityChart(startDate) {
             min: 2000,
             max: 20000,
             stepSize: 2500,
-            fontColor: '#FFFFFF'
+            fontColor: '#FFFFFF',
+            fontSize: 10,
           }
         }],
         xAxes: [{
           gridLines: {
             display: true,
             color: "#FFFFFF"
+          },
+          ticks: {
+            fontColor: "#FFFFFF",
+            fontSize: 10,
           }
         }]
       }
     }
   })
+
   let stairsClimbedChart = new Chart(stairChart, {
     type: 'line',
     data: {
@@ -261,13 +244,7 @@ function createActivityChart(startDate) {
         fill: false,
         backgroundColor: '#E90304',
         borderColor: [
-          'rgb(255, 99, 132)',
-          'rgb(255, 159, 64)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(54, 162, 235)',
-          'rgb(153, 102, 255)',
-          'rgb(201, 203, 207)'
+          'rgb(145,21,43)'
         ],
         borderWidth: 1
       }]
@@ -285,19 +262,24 @@ function createActivityChart(startDate) {
             min: 0,
             max: 60,
             stepSize: 10,
-            fontColor: '#FFFFFF',
-            color: "#FFFFFF"
+            fontColor: "#FFFFFF",
+            fontSize: 10,
           }
         }],
         xAxes: [{
           gridLines: {
             display: true,
             color: "#FFFFFF"
+          },
+          ticks: {
+            fontColor: "#FFFFFF",
+            fontSize: 10,
           }
         }]
       }
     }
   })
+
   let activeMinutesChart = new Chart(minutesChart, {
     type: 'line',
     data: {
@@ -309,13 +291,7 @@ function createActivityChart(startDate) {
         fill: false,
         backgroundColor: '#E90304',
         borderColor: [
-          'rgb(255, 99, 132)',
-          'rgb(255, 159, 64)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(54, 162, 235)',
-          'rgb(153, 102, 255)',
-          'rgb(201, 203, 207)'
+          'rgb(145,21,43)'
         ],
         borderWidth: 1
       }]
@@ -340,13 +316,16 @@ function createActivityChart(startDate) {
           gridLines: {
             display: true,
             color: "#FFFFFF"
+          },
+          ticks: {
+            fontColor: "#FFFFFF",
+            fontSize: 10,
           }
         }]
       }
     }
   })
 }
-
 
 function createSleepChart(startDate) {
   const sleepChart = document.getElementById('sleepChart').getContext('2d');
@@ -364,15 +343,9 @@ function createSleepChart(startDate) {
             data: weeklyHoursSlept,
             data: weeklyHoursSlept[0],
             fill: false,
-            backgroundColor: "#660C60",
+            backgroundColor: "#914aef",
             borderColor: [
-              'rgb(255, 99, 132)',
-              'rgb(255, 159, 64)',
-              'rgb(255, 205, 86)',
-              'rgb(75, 192, 192)',
-              'rgb(54, 162, 235)',
-              'rgb(153, 102, 255)',
-              'rgb(201, 203, 207)'
+              'rgb(54, 162, 235)'
             ],
             borderWidth: 1
           }, {
@@ -380,15 +353,9 @@ function createSleepChart(startDate) {
             label: 'Sleep Quality',
             data: weeklySleepQuality,
             fill: false,
-            backgroundColor: "#660C60",
+            backgroundColor: "#ee30e0",
             borderColor: [
-              'rgb(255, 99, 132)',
-              'rgb(255, 159, 64)',
-              'rgb(255, 205, 86)',
-              'rgb(75, 192, 192)',
-              'rgb(54, 162, 235)',
-              'rgb(153, 102, 255)',
-              'rgb(201, 203, 207)'
+              'rgb(153,102,255)'
             ],
             borderWidth: 1
           }, ]
@@ -429,8 +396,6 @@ function createDaySleepChart(startDate) {
   const sleepChartDay = document.getElementById('sleepChartDay').getContext('2d');
   let dailyHoursSlept = sleep.calculateHoursSleptByDate(selectedDate);
   let dailySleepQuality = sleep.calculateSleepQualityByDate(selectedDate);
-  console.log(dailyHoursSlept);
-  console.log(dailySleepQuality);
   let sleepDataDayChart = new Chart(sleepChartDay, {
     type: 'bar',
     beginAtZero: true,
@@ -439,38 +404,21 @@ function createDaySleepChart(startDate) {
           labels: ["Hours Slept", "Sleep Quality"],
           datasets: [{
             axis: 'y',
-            backgroundColor: ["#36eb5d", "#cd08b9"],
+            backgroundColor: ["#914AEF", "#ee30e0"],
             data: [dailyHoursSlept, dailySleepQuality],
             fill: false,
             borderColor: [
               'rgb(255, 99, 132)',
-              'rgb(255, 159, 64)',
-              'rgb(255, 205, 86)',
-              'rgb(75, 192, 192)',
-              'rgb(54, 162, 235)',
-              'rgb(153, 102, 255)',
-              'rgb(201, 203, 207)'
+              'rgb(255, 159, 64)'
             ],
             borderWidth: 3,
-            //   }, {
-            //     axis: 'y',
-            //     data: dailySleepQuality,
-            //     data: dailySleepQuality,
-            //     fill: false,
-            //     borderColor: [
-            //       'rgb(255, 99, 132)',
-            //       // 'rgb(255, 159, 64)',
-            //       // 'rgb(255, 205, 86)',
-            //       // 'rgb(75, 192, 192)',
-            //       // 'rgb(54, 162, 235)',
-            //       // 'rgb(153, 102, 255)',
-            //       // 'rgb(201, 203, 207)'
-            //     ],
-            //     borderWidth: 1
           }, ]
         },
     options: {
       responsive: true,
+      legend: {
+        display: false
+      },
       scales: {
         yAxes: [{
           gridLines: {
@@ -482,12 +430,18 @@ function createDaySleepChart(startDate) {
             min: 0,
             max: 12,
             stepSize: 1,
+            fontColor: "#FFFFFF",
+            fontSize: 10
           }
         }],
         xAxes: [{
           gridLines: {
             display: true,
             color: "#FFFFFF"
+          },
+          ticks: {
+            fontColor: "#FFFFFF",
+            fontSize: 10,
           }
         }]
       }
@@ -495,35 +449,32 @@ function createDaySleepChart(startDate) {
   })
 }
 
-
 function createHydrationChart(startDate) {
   const hydrationChart = document.getElementById('hydrationChart').getContext('2d');
   let weeklyHydration = hydration.calculateWeeklyOz(startDate);
-  console.log(weeklyHydration);
   let hydrationDataChart = new Chart(hydrationChart, {
     type: 'line',
     data: {
       labels: weeklyHydration[1],
       datasets: [{
         axis: 'y',
-        label: 'Weekly Hydration',
+        label: 'OZ drank',
         data: weeklyHydration,
         data: weeklyHydration[0],
         fill: false,
+        backgroundColor: "#0a60f5",
         borderColor: [
-          'rgb(255, 99, 132)',
-          'rgb(255, 159, 64)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(54, 162, 235)',
-          'rgb(153, 102, 255)',
-          'rgb(201, 203, 207)'
+          'rgb(75, 192, 192)'
         ],
         borderWidth: 1
       }]
     },
     options: {
       responsive: true,
+      legend: {
+        display: true,
+        fontColor: "#ffffff"
+      },
       scales: {
         yAxes: [{
           gridLines: {
@@ -556,10 +507,8 @@ function createHydrationChart(startDate) {
 
 function createDayHydrationChart(startDate) {
   const hydrationChartDay = document.getElementById('hydrationChartDay').getContext('2d');
-  let averageOunces = hydration.calculateAverageOunces();
+  let averageOunces = hydration.calculateAverageOunces(startDate);
   let dailyOunces = hydration.calculateDailyOunces(selectedDate);
-  console.log(averageOunces);
-  console.log(dailyOunces);
   let hydrationDataDayChart = new Chart(hydrationChartDay, {
     type: 'bar',
     beginAtZero: true,
@@ -568,39 +517,20 @@ function createDayHydrationChart(startDate) {
           labels: ["Average OZ", "OZ on date"],
           datasets: [{
             axis: 'y',
-            backgroundColor: ["#4836eb", "#05318c"],
+            backgroundColor: ["#206ee3", "#05318c"],
             data: [averageOunces, dailyOunces],
-            // data:
-            // fill: false,
             borderColor: [
-              'rgb(255, 99, 132)',
-              'rgb(255, 159, 64)',
-              'rgb(255, 205, 86)',
-              'rgb(75,192,192)',
-              'rgb(54, 162, 235)',
-              'rgb(153, 102, 255)',
-              'rgb(201, 203, 207)'
+              'rgb(99,219,255)',
+              'rgb(64,128,255)'
             ],
             borderWidth: 3,
-            //   }, {
-            //     axis: 'y',
-            //     data: dailySleepQuality,
-            //     data: dailySleepQuality,
-            //     fill: false,
-            //     borderColor: [
-            //       'rgb(255, 99, 132)',
-            //       // 'rgb(255, 159, 64)',
-            //       // 'rgb(255, 205, 86)',
-            //       // 'rgb(75, 192, 192)',
-            //       // 'rgb(54, 162, 235)',
-            //       // 'rgb(153, 102, 255)',
-            //       // 'rgb(201, 203, 207)'
-            //     ],
-            //     borderWidth: 1
           }, ]
         },
     options: {
       responsive: true,
+      legend: {
+        display: false
+      },
       scales: {
         yAxes: [{
           gridLines: {
@@ -612,12 +542,18 @@ function createDayHydrationChart(startDate) {
             min: 0,
             max: 100,
             stepSize: 10,
+            fontColor: "#FFFFFF",
+            fontSize: 10
           }
         }],
         xAxes: [{
           gridLines: {
             display: true,
-            color: "Green"
+            color: "#FFFFFF"
+          },
+          ticks: {
+            fontColor: "#FFFFFF",
+            fontSize: 10,
           }
         }]
       }
