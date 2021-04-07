@@ -169,6 +169,7 @@ function showHydrationData() {
   averageOunces.innerText = `Average Daily water intake: ${hydration.calculateAverageOunces()}`
   selectedDateHydration.innerText = `Intake for ${selectedDate}: ${hydration.calculateDailyOunces(selectedDate)} fl oz`
   createHydrationChart(startDate);
+  createDayHydrationChart(startDate);
 }
 
 function showSleepData() {
@@ -176,7 +177,9 @@ function showSleepData() {
   averageSleepQuality.innerText = `Average Sleep Quality: ${sleep.calculateAverageSleepQualityPerDay()}`
   hoursSleptLastNight.innerText = `Hours slept on ${selectedDate}: ${sleep.calculateHoursSleptByDate(selectedDate)}`
   sleepQualityLastNight.innerText = `Sleep Quality on ${selectedDate}: ${sleep.calculateSleepQualityByDate(selectedDate)}`
-  createSleepChart(startDate)
+  createDaySleepChart(startDate);
+  createSleepChart(startDate);
+
 }
 
 function showActivityData() {
@@ -216,128 +219,6 @@ function showActiveMinutesChart() {
   stepChartContainer.classList.add('hide');
   stairChartContainer.classList.add('hide');
   activeMinutesChartContainer.classList.remove('hide');
-}
-
-function createSleepChart(startDate) {
-  const sleepChart = document.getElementById('sleepChart').getContext('2d');
-  let weeklyHoursSlept = sleep.generateHoursSleptByWeek(startDate);
-  let weeklySleepQuality = sleep.generateSleepQualityByWeek(startDate);
-  let sleepDataChart = new Chart(sleepChart, {
-    type: 'line',
-    beginAtZero: true,
-    data:
-        {
-          labels: weeklyHoursSlept[1],
-          datasets: [{
-            axis: 'y',
-            label: 'Hours Slept',
-            data: weeklyHoursSlept[0],
-            fill: false,
-            backgroundColor: "#660C60",
-            borderColor: [
-              'rgb(255, 99, 132)',
-              'rgb(255, 159, 64)',
-              'rgb(255, 205, 86)',
-              'rgb(75, 192, 192)',
-              'rgb(54, 162, 235)',
-              'rgb(153, 102, 255)',
-              'rgb(201, 203, 207)'
-            ],
-            borderWidth: 1
-          }, {
-            axis: 'y',
-            label: 'Sleep Quality',
-            data: weeklySleepQuality,
-            fill: false,
-            backgroundColor: "#660C60",
-            borderColor: [
-              'rgb(255, 99, 132)',
-              'rgb(255, 159, 64)',
-              'rgb(255, 205, 86)',
-              'rgb(75, 192, 192)',
-              'rgb(54, 162, 235)',
-              'rgb(153, 102, 255)',
-              'rgb(201, 203, 207)'
-            ],
-            borderWidth: 1
-          },]
-        },
-    options: {
-      responsive: true,
-      scales: {
-        yAxes: [{
-          gridLines: {
-            display: true,
-            color: "#FFFFFF"
-          },
-          ticks: {
-            beginAtZero: true,
-            min: 0,
-            max: 12,
-            stepSize: 1,
-          }
-        }],
-        xAxes: [{
-          gridLines: {
-            display: true,
-            color: "#FFFFFF"
-          }
-        }]
-      }
-    }
-  })
-}
-
-function createHydrationChart(startDate) {
-  const hydrationChart = document.getElementById('hydrationChart').getContext('2d');
-  let weeklyHydration = hydration.calculateWeeklyOz(startDate);
-  console.log(weeklyHydration);
-  let hydrationDataChart = new Chart(hydrationChart, {
-    type: 'line',
-    data: {
-      labels: weeklyHydration[1],
-      datasets: [{
-        axis: 'y',
-        label: 'Weekly Hydration',
-        data: weeklyHydration[0],
-        fill: false,
-        backgroundColor: '#2074BF',
-        borderColor: [
-          'rgb(255, 99, 132)',
-          'rgb(255, 159, 64)',
-          'rgb(255, 205, 86)',
-          'rgb(75, 192, 192)',
-          'rgb(54, 162, 235)',
-          'rgb(153, 102, 255)',
-          'rgb(201, 203, 207)'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        yAxes: [{
-          gridLines: {
-            display: true,
-            color: "#FFFFFF"
-          },
-          ticks: {
-            beginAtZero: true,
-            min: 0,
-            max: 100,
-            stepSize: 10,
-          }
-        }],
-        xAxes: [{
-          gridLines: {
-            display: true,
-            color: "#FFFFFF"
-          }
-        }]
-      }
-    }
-  })
 }
 
 function createActivityChart(startDate) {
@@ -426,6 +307,7 @@ function createActivityChart(startDate) {
             min: 0,
             max: 60,
             stepSize: 10,
+            color: "#FFFFFF"
           }
         }],
         xAxes: [{
@@ -484,3 +366,283 @@ function createActivityChart(startDate) {
     }
   })
 }
+
+
+function createSleepChart(startDate) {
+  const sleepChart = document.getElementById('sleepChart').getContext('2d');
+  let weeklyHoursSlept = sleep.generateHoursSleptByWeek(startDate);
+  let weeklySleepQuality = sleep.generateSleepQualityByWeek(startDate);
+  let sleepDataChart = new Chart(sleepChart, {
+    type: 'line',
+    beginAtZero: true,
+    data:
+        {
+          labels: weeklyHoursSlept[1],
+          datasets: [{
+            axis: 'y',
+            label: 'Hours Slept',
+            data: weeklyHoursSlept,
+            data: weeklyHoursSlept[0],
+            fill: false,
+            backgroundColor: "#660C60",
+            borderColor: [
+              'rgb(255, 99, 132)',
+              'rgb(255, 159, 64)',
+              'rgb(255, 205, 86)',
+              'rgb(75, 192, 192)',
+              'rgb(54, 162, 235)',
+              'rgb(153, 102, 255)',
+              'rgb(201, 203, 207)'
+            ],
+            borderWidth: 1
+          }, {
+            axis: 'y',
+            label: 'Sleep Quality',
+            data: weeklySleepQuality,
+            fill: false,
+            backgroundColor: "#660C60",
+            borderColor: [
+              'rgb(255, 99, 132)',
+              'rgb(255, 159, 64)',
+              'rgb(255, 205, 86)',
+              'rgb(75, 192, 192)',
+              'rgb(54, 162, 235)',
+              'rgb(153, 102, 255)',
+              'rgb(201, 203, 207)'
+            ],
+            borderWidth: 1
+          }, ]
+        },
+    options: {
+      responsive: true,
+      scales: {
+        yAxes: [{
+          gridLines: {
+            display: true,
+            color: "#FFFFFF"
+          },
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 12,
+            stepSize: 1,
+            fontColor: "green",
+            fontSize: 10,
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            display: true,
+            color: "#FFFFFF"
+          },
+          ticks: {
+            fontColor: "green",
+            fontSize: 10,
+          }
+        }]
+      }
+    }
+  })
+}
+
+function createDaySleepChart(startDate) {
+  const sleepChartDay = document.getElementById('sleepChartDay').getContext('2d');
+  let dailyHoursSlept = sleep.calculateHoursSleptByDate(startDate);
+  let dailySleepQuality = sleep.calculateSleepQualityByDate(startDate);
+  console.log(dailyHoursSlept);
+  console.log(dailySleepQuality);
+  let sleepDataDayChart = new Chart(sleepChartDay, {
+    type: 'bar',
+    beginAtZero: true,
+    data:
+        {
+          labels: ["Hours Slept", "Sleep Quality"],
+          datasets: [{
+            axis: 'y',
+            backgroundColor: ["#36eb5d", "#cd08b9"],
+            data: [dailyHoursSlept, dailySleepQuality],
+            fill: false,
+            borderColor: [
+              'rgb(255, 99, 132)',
+              'rgb(255, 159, 64)',
+              'rgb(255, 205, 86)',
+              'rgb(75, 192, 192)',
+              'rgb(54, 162, 235)',
+              'rgb(153, 102, 255)',
+              'rgb(201, 203, 207)'
+            ],
+            borderWidth: 3,
+            //   }, {
+            //     axis: 'y',
+            //     data: dailySleepQuality,
+            //     data: dailySleepQuality,
+            //     fill: false,
+            //     borderColor: [
+            //       'rgb(255, 99, 132)',
+            //       // 'rgb(255, 159, 64)',
+            //       // 'rgb(255, 205, 86)',
+            //       // 'rgb(75, 192, 192)',
+            //       // 'rgb(54, 162, 235)',
+            //       // 'rgb(153, 102, 255)',
+            //       // 'rgb(201, 203, 207)'
+            //     ],
+            //     borderWidth: 1
+          }, ]
+        },
+    options: {
+      responsive: true,
+      scales: {
+        yAxes: [{
+          gridLines: {
+            display: true,
+            color: "#FFFFFF"
+          },
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 12,
+            stepSize: 1,
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            display: true,
+            color: "Green"
+          }
+        }]
+      }
+    }
+  })
+}
+
+
+function createHydrationChart(startDate) {
+  const hydrationChart = document.getElementById('hydrationChart').getContext('2d');
+  let weeklyHydration = hydration.calculateWeeklyOz(startDate);
+  console.log(weeklyHydration);
+  let hydrationDataChart = new Chart(hydrationChart, {
+    type: 'line',
+    data: {
+      labels: weeklyHydration[1],
+      datasets: [{
+        axis: 'y',
+        label: 'Weekly Hydration',
+        data: weeklyHydration,
+        data: weeklyHydration[0],
+        fill: false,
+        borderColor: [
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        yAxes: [{
+          gridLines: {
+            display: true,
+            color: "#FFFFFF"
+          },
+          ticks: {
+            fontColor: "green",
+            fontSize: 10,
+            beginAtZero: true,
+            min: 0,
+            max: 100,
+            stepSize: 10,
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            display: true,
+            color: "#FFFFFF"
+          },
+          ticks: {
+            fontColor: "green",
+            fontSize: 10,
+          }
+        }]
+      }
+    }
+  })
+}
+
+function createDayHydrationChart(startDate) {
+  const hydrationChartDay = document.getElementById('hydrationChartDay').getContext('2d');
+  let averageOunces = hydration.calculateAverageOunces(startDate);
+  let dailyOunces = hydration.calculateDailyOunces(startDate);
+  console.log(averageOunces);
+  console.log(dailyOunces);
+  let hydrationDataDayChart = new Chart(hydrationChartDay, {
+    type: 'bar',
+    beginAtZero: true,
+    data:
+        {
+          labels: ["Average OZ", "OZ on date"],
+          datasets: [{
+            axis: 'y',
+            backgroundColor: ["#4836eb", "#05318c"],
+            data: [averageOunces, dailyOunces],
+            // data:
+            // fill: false,
+            borderColor: [
+              'rgb(255, 99, 132)',
+              'rgb(255, 159, 64)',
+              'rgb(255, 205, 86)',
+              'rgb(75,192,192)',
+              'rgb(54, 162, 235)',
+              'rgb(153, 102, 255)',
+              'rgb(201, 203, 207)'
+            ],
+            borderWidth: 3,
+            //   }, {
+            //     axis: 'y',
+            //     data: dailySleepQuality,
+            //     data: dailySleepQuality,
+            //     fill: false,
+            //     borderColor: [
+            //       'rgb(255, 99, 132)',
+            //       // 'rgb(255, 159, 64)',
+            //       // 'rgb(255, 205, 86)',
+            //       // 'rgb(75, 192, 192)',
+            //       // 'rgb(54, 162, 235)',
+            //       // 'rgb(153, 102, 255)',
+            //       // 'rgb(201, 203, 207)'
+            //     ],
+            //     borderWidth: 1
+          }, ]
+        },
+    options: {
+      responsive: true,
+      scales: {
+        yAxes: [{
+          gridLines: {
+            display: true,
+            color: "#FFFFFF"
+          },
+          ticks: {
+            beginAtZero: true,
+            min: 0,
+            max: 100,
+            stepSize: 10,
+          }
+        }],
+        xAxes: [{
+          gridLines: {
+            display: true,
+            color: "Green"
+          }
+        }]
+      }
+    }
+  })
+}
+
+
