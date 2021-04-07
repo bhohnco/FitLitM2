@@ -506,7 +506,7 @@ function createDaySleepChart(startDate) {
         }],
         xAxes: [{
           gridLines: {
-            display: true,
+            display: false,
             color: "Green"
           }
         }]
