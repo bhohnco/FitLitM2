@@ -1,4 +1,4 @@
-const userRepository = new UserRepository(userData);
+const userRepository = new UserRepository(userData, User);
 const hydration = new Hydration(hydrationData, userRepository.currentUser.id);
 const sleep = new Sleep(sleepData, userRepository.currentUser.id);
 const activity = new Activity(activityData, userRepository.currentUser);

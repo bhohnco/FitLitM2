@@ -1,7 +1,7 @@
 class UserRepository {
-  constructor(userData) {
+  constructor(userData, User) {
     this.userData = userData;
-    this.users = this.createUsers();
+    this.users = this.createUsers(User);
     this.currentUser = this.selectCurrentUser();
   }
 
@@ -10,7 +10,7 @@ class UserRepository {
     return this.users[randomIndex];
   }
 
-  createUsers() {
+  createUsers(User) {
     const createdUsers = [];
     this.userData.forEach((userDataObject, i) => {
       var user = new User(userDataObject);
