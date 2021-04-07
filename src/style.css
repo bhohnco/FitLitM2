@@ -67,16 +67,16 @@ main {
 .step-button {
   color: white;
   background-color: #191935;
-  width: 10vw;
+  width: 30vw;
   border-radius: 5px;
-  margin-top: 5vh;
-  margin-left: 16vh;
+  margin-top: 3vh;
+  margin-left: 1vh;
 }
 
 .activity-button {
   color: white;
   background-color: #191935;
-  width: 10vw;
+  width: 35vw;
   border-radius: 5px;
 }
 
@@ -223,5 +223,21 @@ p {
         margin-left: 2vw;
         margin-right: none;
         border-radius: 5px;
+    }
+
+    .step-button {
+      color: white;
+      background-color: #191935;
+      width: 10vw;
+      border-radius: 5px;
+      margin-top: 5vh;
+      margin-left: 16vh;
+    }
+
+    .activity-button {
+      color: white;
+      background-color: #191935;
+      width: 10vw;
+      border-radius: 5px;
     }
 }
