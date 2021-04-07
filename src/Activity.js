@@ -119,7 +119,8 @@ class Activity {
     let day2 = this.userActivity[findStartingDate + 1];
     let day1 = this.userActivity[findStartingDate]
     if (day7) {
-      return [[day1.numSteps, day2.numSteps, day3.numSteps, day4.numSteps,
+      return [[day1.date, day2.date, day3.date, day4.date,
+        day5.date, day6.date, day7.date],[day1.numSteps, day2.numSteps, day3.numSteps, day4.numSteps,
         day5.numSteps, day6.numSteps, day7.numSteps],
         [day1.flightsOfStairs, day2.flightsOfStairs, day3.flightsOfStairs, day4.flightsOfStairs,
           day5.flightsOfStairs, day6.flightsOfStairs, day7.flightsOfStairs],

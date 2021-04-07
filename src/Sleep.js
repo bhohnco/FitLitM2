@@ -50,8 +50,9 @@ class Sleep {
     let day2 = this.userSleep[findStartingDate + 1];
     let day1 = this.userSleep[findStartingDate]
     if (day7) {
-      return [day1.hoursSlept, day2.hoursSlept, day3.hoursSlept, day4.hoursSlept,
-        day5.hoursSlept, day6.hoursSlept, day7.hoursSlept];
+      return [[day1.hoursSlept, day2.hoursSlept, day3.hoursSlept, day4.hoursSlept,
+        day5.hoursSlept, day6.hoursSlept, day7.hoursSlept], [day1.date, day2.date, day3.date, day4.date,
+          day5.date, day6.date, day7.date]];
     } else {
       return 'Please select a valid week'
     }
