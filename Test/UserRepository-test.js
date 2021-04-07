@@ -7,7 +7,7 @@ const userTestingData = require ('../Test/User-TestingData.js');
 describe('User Repo', () => {
   let user, userRepository;
   beforeEach(() => {
-    userRepository = new UserRepository(userTestingData);
+    userRepository = new UserRepository(userTestingData, User);
   });
 
   it('should be a function', () => {
@@ -23,17 +23,17 @@ describe('User Repo', () => {
   });
 
   it('should be able to create and store multiple users', () => {
-    userRepository.createUsers(userTestingData);
+    userRepository.createUsers(User);
     expect(userRepository.users).to.be.an('array').with.a.lengthOf(3);
   });
 
   it('should be able to return user data if given an id', () => {
-    userRepository.createUsers(userTestingData);
+    userRepository.createUsers(User);
     expect(userRepository.returnUserData(1)).to.deep.equal(userRepository.userData[0]);
   });
 
   it('should be able to return the average step goal for all users', () => {
-    userRepository.createUsers(userTestingData);
+    userRepository.createUsers(User);
     expect(userRepository.returnAverageStepGoal()).to.equal(7000);
   });
 
