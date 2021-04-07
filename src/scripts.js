@@ -4,7 +4,7 @@ const sleep = new Sleep(sleepData, userRepository.currentUser.id);
 const activity = new Activity(activityData, userRepository.currentUser);
 let selectedDate = '2019/09/22';
 let startDate = '2019/09/16';
-let endDate = '2019/09/22';
+
 
 
 const userInfoButton = document.getElementById('userinfoButton');
@@ -15,8 +15,6 @@ const averageStepGoal = document.getElementById('averageStepGoal');
 const userNameDisplay = document.getElementById('userName');
 const averageOunces = document.getElementById('averageOunces')
 const selectedDateHydration = document.getElementById('selectedDateHydration');
-const hoursSleptLastNight = document.getElementById('hoursSleptLastNight');
-const sleepQualityLastNight = document.getElementById('sleepQualityLastNight');
 const averageHoursSlept = document.getElementById('averageHoursSlept');
 const averageSleepQuality = document.getElementById('averageSleepQuality');
 const hoursSleptForSelectedWeek = document.getElementById('hoursSleptForSelectedWeek');
@@ -69,25 +67,6 @@ const start = datepicker(document.getElementById('dateRangePickerStart'), {
    }
   }
 });
-// const end = datepicker(document.getElementById('dateRangePickerEnd'), {
-//   id: 'dateRangePicker',
-//   startDate: new Date(2019, 8, 1),
-//   minDate: new Date(2019, 5, 15),
-//   maxDate: new Date(2019, 8, 22),
-//   onSelect: (instance, date) => {
-//     if (date) {
-//     let stringifiedRange = JSON.stringify(end.getRange());
-//     let splitRange = stringifiedRange.split("\"");
-//     let startRange = splitRange[3]
-//     let endRange = splitRange[7]
-//     startDate = startRange.substring(0, 10).replaceAll('-', '/');
-//     endDate = endRange.substring(0, 10).replaceAll('-', '/');
-//     showHydrationData();
-//     showSleepData();
-//     showActivityData();
-//    }
-//   }
-// });
 
 
 window.addEventListener('load', displayUserInfo);
@@ -175,8 +154,6 @@ function showHydrationData() {
 function showSleepData() {
   averageHoursSlept.innerText = `Average Hours Slept: ${sleep.calculateAverageHoursSleptPerDay()}`
   averageSleepQuality.innerText = `Average Sleep Quality: ${sleep.calculateAverageSleepQualityPerDay()}`
-  hoursSleptLastNight.innerText = `Hours slept on ${selectedDate}: ${sleep.calculateHoursSleptByDate(selectedDate)}`
-  sleepQualityLastNight.innerText = `Sleep Quality on ${selectedDate}: ${sleep.calculateSleepQualityByDate(selectedDate)}`
   createDaySleepChart(startDate);
   createSleepChart(startDate);
 
@@ -261,6 +238,7 @@ function createActivityChart(startDate) {
             min: 2000,
             max: 20000,
             stepSize: 2500,
+            fontColor: '#FFFFFF'
           }
         }],
         xAxes: [{
@@ -307,6 +285,7 @@ function createActivityChart(startDate) {
             min: 0,
             max: 60,
             stepSize: 10,
+            fontColor: '#FFFFFF',
             color: "#FFFFFF"
           }
         }],
@@ -354,6 +333,7 @@ function createActivityChart(startDate) {
             min: 0,
             max: 320,
             stepSize: 40,
+            fontColor: "#FFFFFF",
           }
         }],
         xAxes: [{
@@ -426,7 +406,7 @@ function createSleepChart(startDate) {
             min: 0,
             max: 12,
             stepSize: 1,
-            fontColor: "green",
+            fontColor: "#FFFFFF",
             fontSize: 10,
           }
         }],
@@ -436,7 +416,7 @@ function createSleepChart(startDate) {
             color: "#FFFFFF"
           },
           ticks: {
-            fontColor: "green",
+            fontColor: "#FFFFFF",
             fontSize: 10,
           }
         }]
@@ -447,8 +427,8 @@ function createSleepChart(startDate) {
 
 function createDaySleepChart(startDate) {
   const sleepChartDay = document.getElementById('sleepChartDay').getContext('2d');
-  let dailyHoursSlept = sleep.calculateHoursSleptByDate(startDate);
-  let dailySleepQuality = sleep.calculateSleepQualityByDate(startDate);
+  let dailyHoursSlept = sleep.calculateHoursSleptByDate(selectedDate);
+  let dailySleepQuality = sleep.calculateSleepQualityByDate(selectedDate);
   console.log(dailyHoursSlept);
   console.log(dailySleepQuality);
   let sleepDataDayChart = new Chart(sleepChartDay, {
@@ -507,7 +487,7 @@ function createDaySleepChart(startDate) {
         xAxes: [{
           gridLines: {
             display: true,
-            color: "Green"
+            color: "#FFFFFF"
           }
         }]
       }
@@ -551,7 +531,7 @@ function createHydrationChart(startDate) {
             color: "#FFFFFF"
           },
           ticks: {
-            fontColor: "green",
+            fontColor: "#FFFFFF",
             fontSize: 10,
             beginAtZero: true,
             min: 0,
@@ -565,7 +545,7 @@ function createHydrationChart(startDate) {
             color: "#FFFFFF"
           },
           ticks: {
-            fontColor: "green",
+            fontColor: "#FFFFFF",
             fontSize: 10,
           }
         }]
@@ -576,8 +556,8 @@ function createHydrationChart(startDate) {
 
 function createDayHydrationChart(startDate) {
   const hydrationChartDay = document.getElementById('hydrationChartDay').getContext('2d');
-  let averageOunces = hydration.calculateAverageOunces(startDate);
-  let dailyOunces = hydration.calculateDailyOunces(startDate);
+  let averageOunces = hydration.calculateAverageOunces();
+  let dailyOunces = hydration.calculateDailyOunces(selectedDate);
   console.log(averageOunces);
   console.log(dailyOunces);
   let hydrationDataDayChart = new Chart(hydrationChartDay, {
@@ -644,5 +624,3 @@ function createDayHydrationChart(startDate) {
     }
   })
 }
-
-
