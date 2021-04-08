@@ -77,31 +77,13 @@ class Activity {
     return this.userActivity.sort((a, b) => b.flightsOfStairs - a.flightsOfStairs).shift().flightsOfStairs;
   }
 
-  returnAverageStairsClimbed(selectedDate) {
-    let totalStairsClimbed = 0;
+  returnAverageActivityInfo(selectedDate, dataNeeded) {
+    let totalActivity = 0;
     const selectedDateData = this.userActivityData.filter(data => data.date === selectedDate);
     selectedDateData.forEach((user, i) => {
-      totalStairsClimbed = totalStairsClimbed + user.flightsOfStairs;
+      totalActivity = totalActivity + user[dataNeeded];
     });
-    return Math.round(totalStairsClimbed / selectedDateData.length);
-  }
-
-  returnAverageStepsTaken(selectedDate) {
-    let totalStepsTaken = 0;
-    const selectedDateData = this.userActivityData.filter(data => data.date === selectedDate);
-    selectedDateData.forEach((user, i) => {
-      totalStepsTaken = totalStepsTaken + user.numSteps;
-    });
-    return Math.round(totalStepsTaken / selectedDateData.length);
-  }
-
-  returnAverageActiveMinutes(selectedDate) {
-    let totalActiveMinutes = 0;
-    const selectedDateData = this.userActivityData.filter(data => data.date === selectedDate);
-    selectedDateData.forEach((user, i) => {
-      totalActiveMinutes = totalActiveMinutes+ user.minutesActive;
-    });
-    return Math.round(totalActiveMinutes / selectedDateData.length);
+    return Math.round(totalActivity / selectedDateData.length);
   }
 
   generateActivityInfoByWeek(startDate) {

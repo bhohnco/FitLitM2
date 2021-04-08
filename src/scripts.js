@@ -95,7 +95,7 @@ function calculateStepGoalDifference() {
 }
 
 function calculateStepDifference() {
-  let averageSteps = activity.returnAverageStepsTaken(selectedDate);
+  let averageSteps = activity.returnAverageActivityInfo(selectedDate, 'numSteps');
   let userSteps = activity.returnStepsTaken(selectedDate);
   let stepDifferece = averageSteps - userSteps;
   if (stepDifferece < 0) {
@@ -108,7 +108,7 @@ function calculateStepDifference() {
 }
 
 function calculateActiveMinuteDifference() {
-  let averageMinutes = activity.returnAverageActiveMinutes(selectedDate);
+  let averageMinutes = activity.returnAverageActivityInfo(selectedDate, 'minutesActive');
   let userMinutes = activity.returnActiveMinutes(selectedDate);
   let minuteDifference = averageMinutes - userMinutes;
   if (minuteDifference < 0) {
@@ -121,7 +121,7 @@ function calculateActiveMinuteDifference() {
 }
 
 function calculateStairsClimbedDifferece() {
-  let averageStairsClimbed = activity.returnAverageStairsClimbed(selectedDate);
+  let averageStairsClimbed = activity.returnAverageActivityInfo(selectedDate, 'flightsOfStairs');
   let userStairsClimbed = activity.returnStairsClimbed(selectedDate);
   let stairDifference = averageStairsClimbed - userStairsClimbed;
   if (stairDifference < 0) {
