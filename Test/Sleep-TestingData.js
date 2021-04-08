@@ -1,5 +1,4 @@
-const sleepTestingData = [
-  {
+const sleepTestingData = [{
     "userID": 1,
     "date": "2019/06/15",
     "hoursSlept": 6.1,
@@ -124,7 +123,8 @@ const sleepTestingData = [
     "date": "2019/06/21",
     "hoursSlept": 8.9,
     "sleepQuality": 3.7
-  }]
+  }
+]
 
 
 

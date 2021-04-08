@@ -1,5 +1,4 @@
-const hydrationTestingData = [
-  {
+const hydrationTestingData = [{
     "userID": 1,
     "date": "2019/06/15",
     "numOunces": 37

@@ -1,5 +1,4 @@
-const activityTestingData = [
-  {
+const activityTestingData = [{
     "userID": 1,
     "date": "2019/06/15",
     "numSteps": 3577,
@@ -145,10 +144,7 @@ const activityTestingData = [
     "numSteps": 7498,
     "minutesActive": 199,
     "flightsOfStairs": 13
-  }];
+  }
+];
 
 module.exports = activityTestingData;
-
-
-
-
