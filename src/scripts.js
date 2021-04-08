@@ -13,7 +13,9 @@ const userStepGoal = document.getElementById('userinfoGoal');
 const averageStepGoal = document.getElementById('averageStepGoal');
 const userNameDisplay = document.getElementById('userName');
 const averageOunces = document.getElementById('averageOunces')
+const hydrationHeader = document.getElementById('hydrationContainer');
 const selectedDateHydration = document.getElementById('selectedDateHydration');
+const sleepHeader = document.getElementById('sleepContainer')
 const averageHoursSlept = document.getElementById('averageHoursSlept');
 const averageSleepQuality = document.getElementById('averageSleepQuality');
 const stepsByDay = document.getElementById('stepsByDay');
@@ -137,8 +139,9 @@ function showDropdown() {
 }
 
 function showHydrationData() {
+  hydrationHeader.innerText = `Hydration for ${selectedDate}`
   averageOunces.innerText = `Average Daily water intake: ${hydration.calculateAverageOunces()}`
-  selectedDateHydration.innerText = `Intake for ${selectedDate}: ${hydration.calculateDailyOunces(selectedDate)} fl oz`
+  selectedDateHydration.innerText = `Intake for selected date: ${hydration.calculateDailyOunces(selectedDate)} oz`
   if (hydration.calculateWeeklyOz(startDate) === "Please select a valid week") {
     window.alert("Please select a valid week start date")
   } else {
@@ -148,6 +151,7 @@ function showHydrationData() {
 }
 
 function showSleepData() {
+  sleepHeader.innerText = `Sleep for ${selectedDate}`
   averageHoursSlept.innerText = `Average Hours Slept: ${sleep.calculateAverageHoursSleptPerDay()}`
   averageSleepQuality.innerText = `Average Sleep Quality: ${sleep.calculateAverageSleepQualityPerDay()}`
   if (hydration.calculateWeeklyOz(startDate) !== "Please select a valid week") {
