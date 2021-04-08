@@ -35,4 +35,6 @@ For this project we were given data from an activity tracker for many users over
 
 ### ScreenShots ### 
 
+![](https://user-images.githubusercontent.com/71860165/113956500-c93fd300-97da-11eb-9b8f-791165e962b5.png)
+![](https://user-images.githubusercontent.com/71860165/113956494-c5ac4c00-97da-11eb-9354-24b8c7c0e23e.png)
 
