@@ -32,3 +32,7 @@ For this project we were given data from an activity tracker for many users over
 * Implementing charts to show our data on the app 
 * Working together to solve errors and bugs 
 * Building class structure to follow Test Driven Development 
+
+### ScreenShots ### 
+
+
