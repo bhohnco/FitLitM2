@@ -9,6 +9,7 @@ let startDate = '2019/09/16';
 const userInfoButton = document.getElementById('userinfoButton');
 const userInfoDropdown = document.getElementById('userInfoPage');
 const userEmail = document.getElementById('userinfoEmail');
+const activityHeader = document.getElementById('activityContainer');
 const userStepGoal = document.getElementById('userinfoGoal');
 const averageStepGoal = document.getElementById('averageStepGoal');
 const userNameDisplay = document.getElementById('userName');
@@ -19,8 +20,6 @@ const averageSleepQuality = document.getElementById('averageSleepQuality');
 const stepsByDay = document.getElementById('stepsByDay');
 const activeMinutesByDay = document.getElementById('activeMinutesByDay');
 const milesWalkedByDay = document.getElementById('milesWalkedByDay');
-const compareSteps = document.getElementById('compareSteps');
-const compareActiveMinutes = document.getElementById('compareActiveMinutes');
 const compareStairsClimbed = document.getElementById('compareStairsClimbed');
 const stepChartContainer = document.getElementById('stepChartContainer');
 const stairChartContainer = document.getElementById('stairChartContainer');
@@ -100,11 +99,11 @@ function calculateStepDifference() {
   let userSteps = activity.returnStepsTaken(selectedDate);
   let stepDifferece = averageSteps - userSteps;
   if (stepDifferece < 0) {
-    return `You took ${Math.abs(stepDifferece)} steps more than the average user on ${selectedDate}`
+    return `${Math.abs(stepDifferece)} more than the average user!`
   } else if (stepDifferece > 0) {
-    return `Your took ${stepDifferece} steps less than the average user on ${selectedDate}`
+    return `${stepDifferece} less than the average user`
   } else {
-    return `Your took the same amount of steps as the average user on ${selectedDate}`
+    return `You took the same amount of steps as the average user`
   }
 }
 
@@ -113,11 +112,11 @@ function calculateActiveMinuteDifference() {
   let userMinutes = activity.returnActiveMinutes(selectedDate);
   let minuteDifference = averageMinutes - userMinutes;
   if (minuteDifference < 0) {
-    return `You were active for ${Math.abs(minuteDifference)} minutes more than the average user on ${selectedDate}`
+    return `${Math.abs(minuteDifference)} more than the average user!`
   } else if (minuteDifference > 0) {
-    return `Your were active for ${minuteDifference} minutes less than the average user on ${selectedDate}`
+    return `${minuteDifference} less than the average user`
   } else {
-    return `Your were active for the same amount of minutes as the average user on ${selectedDate}`
+    return `You were active for the same amount of minutes as the average user`
   }
 }
 
@@ -126,11 +125,11 @@ function calculateStairsClimbedDifferece() {
   let userStairsClimbed = activity.returnStairsClimbed(selectedDate);
   let stairDifference = averageStairsClimbed - userStairsClimbed;
   if (stairDifference < 0) {
-    return `You climbed ${Math.abs(stairDifference)} more stairs than the average user on ${selectedDate}`
+    return `You climbed ${Math.abs(stairDifference)} more flights of stairs than the average user!`
   } else if (stairDifference > 0) {
-    return `You climbed ${stairDifference} less than the average user on ${selectedDate}`
+    return `You climbed ${stairDifference} less filghts of stairs than the average user`
   } else {
-    return `You climbed the same amount of stairs as the average user on ${selectedDate}`
+    return `You climbed the same amount of stairs as the average user`
   }
 }
 
@@ -154,11 +153,10 @@ function showSleepData() {
 }
 
 function showActivityData() {
-  stepsByDay.innerText = `Steps Taken On ${selectedDate}: ${activity.returnStepsTaken(selectedDate)}`
-  activeMinutesByDay.innerText = `Minutes Active On ${selectedDate}: ${activity.returnActiveMinutes(selectedDate)}`
-  milesWalkedByDay.innerText = `Miles Walked On ${selectedDate}: ${activity.returnMilesWalked(selectedDate)}`
-  compareSteps.innerText = calculateStepDifference();
-  compareActiveMinutes.innerText = calculateActiveMinuteDifference();
+  activityHeader.innerText = `Activity on ${selectedDate}`
+  stepsByDay.innerText = `Steps Taken: ${activity.returnStepsTaken(selectedDate)}, thats ${calculateStepDifference()}`
+  activeMinutesByDay.innerText = `Minutes Active: ${activity.returnActiveMinutes(selectedDate)}, thats ${calculateActiveMinuteDifference()}`
+  milesWalkedByDay.innerText = `Miles Walked: ${activity.returnMilesWalked(selectedDate)}`
   compareStairsClimbed.innerText = calculateStairsClimbedDifferece();
   createActivityChart(startDate);
 }
