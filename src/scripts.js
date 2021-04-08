@@ -201,6 +201,7 @@ function createActivityChart(startDate) {
       }]
     },
     options: {
+      events:['click'],
       responsive: true,
       scales: {
         yAxes: [{
@@ -248,6 +249,7 @@ function createActivityChart(startDate) {
       }]
     },
     options: {
+      events:['click'],
       responsive: true,
       scales: {
         yAxes: [{
@@ -295,6 +297,7 @@ function createActivityChart(startDate) {
       }]
     },
     options: {
+      events:['click'],
       responsive: true,
       scales: {
         yAxes: [{
@@ -359,6 +362,7 @@ function createSleepChart(startDate) {
           }, ]
         },
     options: {
+      events:['click'],
       responsive: true,
       scales: {
         yAxes: [{
@@ -413,6 +417,7 @@ function createDaySleepChart(startDate) {
           }, ]
         },
     options: {
+      events:['click'],
       responsive: true,
       legend: {
         display: false
@@ -468,6 +473,7 @@ function createHydrationChart(startDate) {
       }]
     },
     options: {
+      events:['click'],
       responsive: true,
       legend: {
         display: true,
@@ -525,6 +531,7 @@ function createDayHydrationChart(startDate) {
           }, ]
         },
     options: {
+      events:['click'],
       responsive: true,
       legend: {
         display: false
