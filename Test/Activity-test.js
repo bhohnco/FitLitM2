@@ -62,19 +62,14 @@ describe('Activity', () => {
   })
 
   it('should be able to calculate the average activity data for all users on a given date', () => {
-    expect(activity1.returnAverageStairsClimbed(selectedDate)).to.equal(15);
-    expect(activity1.returnAverageStepsTaken(selectedDate)).to.equal(8161);
-    expect(activity1.returnAverageActiveMinutes(selectedDate)).to.equal(169);
-  });
-
-  it('should be able to calculate the average activity data for all users on a given date', () => {
-    expect(activity1.returnAverageStairsClimbed(selectedDate)).to.equal(15);
-    expect(activity1.returnAverageStepsTaken(selectedDate)).to.equal(8161);
-    expect(activity1.returnAverageActiveMinutes(selectedDate)).to.equal(169);
+    expect(activity1.returnAverageActivityInfo(selectedDate, 'flightsOfStairs')).to.equal(15);
+    expect(activity1.returnAverageActivityInfo(selectedDate, 'numSteps')).to.equal(8161);
+    expect(activity1.returnAverageActivityInfo(selectedDate, 'minutesActive')).to.equal(169);
   });
 
   it('should be able to calculate activity data for a user for a given week', () => {
-    expect(activity1.generateActivityInfoByWeek(startDate)).to.deep.equal([[ 3577,  6637, 14329,  4419, 8429, 14478, 6760 ],
+    expect(activity1.generateActivityInfoByWeek(startDate)).to.deep.equal([[ "2019/06/15", "2019/06/16", "2019/06/17", "2019/06/18", "2019/06/19" ,"2019/06/20", "2019/06/21" ],
+    [ 3577,  6637, 14329,  4419, 8429, 14478, 6760 ],
        [ 16, 36, 18, 33, 2, 12,  6 ], [ 140, 175, 168, 165, 275, 140, 135]]);
   });
 })

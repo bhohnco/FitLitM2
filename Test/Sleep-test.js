@@ -51,9 +51,9 @@ describe('Sleep', () => {
   });
 
   it('should generate the weekly hours slept by date', () => {
-    expect(sleep1.generateHoursSleptByWeek("2019/06/15")).to.deep.equal([ 6.1, 4.1, 8, 10.4, 10.7, 9.3, 7.8 ])
-    expect(sleep2.generateHoursSleptByWeek("2019/06/15")).to.deep.equal([ 7, 7.5, 5.7, 10.8, 9.6, 10.1, 4.3 ]);
-  });
+    expect(sleep1.generateHoursSleptByWeek("2019/06/15")).to.deep.equal([[ 6.1, 4.1, 8, 10.4, 10.7, 9.3, 7.8 ],
+      ["2019/06/15", "2019/06/16", "2019/06/17", "2019/06/18", "2019/06/19", "2019/06/20", "2019/06/21" ]]);
+   });
 
   it('should generate the weekly sleep quality by date', () => {
     expect(sleep1.generateSleepQualityByWeek("2019/06/15")).to.deep.equal([ 2.2, 3.8, 2.6, 3.1, 1.2, 1.2, 4.2 ])
