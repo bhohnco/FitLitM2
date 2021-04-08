@@ -50,9 +50,14 @@ class Sleep {
     let day2 = this.userSleep[findStartingDate + 1];
     let day1 = this.userSleep[findStartingDate]
     if (day7) {
-      return [[day1.hoursSlept, day2.hoursSlept, day3.hoursSlept, day4.hoursSlept,
-        day5.hoursSlept, day6.hoursSlept, day7.hoursSlept], [day1.date, day2.date, day3.date, day4.date,
-          day5.date, day6.date, day7.date]];
+      return [
+        [day1.hoursSlept, day2.hoursSlept, day3.hoursSlept, day4.hoursSlept,
+          day5.hoursSlept, day6.hoursSlept, day7.hoursSlept
+        ],
+        [day1.date, day2.date, day3.date, day4.date,
+          day5.date, day6.date, day7.date
+        ]
+      ];
     } else {
       return 'Please select a valid week'
     }
@@ -75,7 +80,8 @@ class Sleep {
     let day1 = this.userSleep[findStartingDate];
     if (day7) {
       return [day1.sleepQuality, day2.sleepQuality, day3.sleepQuality, day4.sleepQuality,
-        day5.sleepQuality, day6.sleepQuality, day7.sleepQuality];
+        day5.sleepQuality, day6.sleepQuality, day7.sleepQuality
+      ];
     } else {
       return 'Please select a valid week'
     }
@@ -112,7 +118,7 @@ class Sleep {
     let day2 = this.userSleepData[findStartingDate + 1];
     let day1 = this.userSleepData[findStartingDate];
     sleepQualityTotal = Number((day7.sleepQuality + day6.sleepQuality + day5.sleepQuality + day4.sleepQuality +
-        day3.sleepQuality + day2.sleepQuality + day1.sleepQuality) / 7).toFixed(1)
+      day3.sleepQuality + day2.sleepQuality + day1.sleepQuality) / 7).toFixed(1)
     if (sleepQualityTotal > 3) {
       userGroup.push(day1.userID);
     }

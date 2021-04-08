@@ -16,82 +16,85 @@
     <h1><span id="headerTitle"></span>Fitlit</h1>
     <h2><span class="user-name" id="userName"></span></h2>
     <button type='button' class='user-info-button' name='button' id='userinfoButton' aria-label="See user profile"> <i class="admin-icon far fa-user"></i></button>
-    <input type="text" id ="date-picker" name="" placeholder="Select Date">
+    <input type="text" id="date-picker" name="" placeholder="Select Date">
     <input type="text" class='date-range-picker-start' id='dateRangePickerStart' placeholder="Select Start of Week">
     <section class='hide user-info-page' id='userInfoPage'>
       <h5 id='userinfoName'></h5>
       <p class='userinfo-p' id='userinfoEmail'>USER EMAIL</p>
       <p class='userinfo-p' id='userinfoGoal'>DAILY STEP GOAL: 6000</p>
+      <p class='userinfo-p' id='userStrideLength'>Stride Length: </p>
       <p class='userinfo-p' id='averageStepGoal'>Average Steps Globally</p>
+      <p class='userinfo-p' id='friends'>Friends:</p>
     </section>
   </header>
-    <main>
-      <section class='card-container-activity' id='activityCardContainer'>
-        <section class='main-card' id='activityMainCard'>
-          <div class='main-card-top'>
-            <h2 id='activityContainer'>Activity</h2>
-            <h3 id='stepsByDay'> Steps Taken On:</h3>
-            <h3 id='activeMinutesByDay'> Minutes Active On:</h3>
-            <h3 id='compareStairsClimbed'></h3>
-            <h3 id='milesWalkedByDay'> Miles Walked On:</h3>
-            <button type="button" class='step-button' id='showSteps'>Show Steps</button>
-            <button type="button" class='activity-button' id='showStairs'>Show Stairs</button>
-            <button type="button" class='activity-button' id='showActiveMinutes'>Show Active Minutes</button>
+  <main>
+    <section class='card-container-activity' id='activityCardContainer'>
+      <section class='main-card' id='activityMainCard'>
+        <div class='main-card-top'>
+          <h2 id='activityContainer'>Activity</h2>
+          <h3 id='stepsByDay'> Steps Taken On:</h3>
+          <h3 id='activeMinutesByDay'> Minutes Active On:</h3>
+          <h3 id='compareStairsClimbed'></h3>
+          <h3 id='milesWalkedByDay'> Miles Walked On:</h3>
+          <button type="button" class='step-button' id='showSteps'>Show Steps</button>
+          <button type="button" class='activity-button' id='showStairs'>Show Stairs</button>
+          <button type="button" class='activity-button' id='showActiveMinutes'>Show Active Minutes</button>
+        </div>
+      </section>
+    </section>
+    <section class='activity-chart' id='stepChartContainer'>
+      <canvas id="stepChart" class="activity-chart"></canvas>
+    </section>
+    <section class='activity-chart hide' id='stairChartContainer'>
+      <canvas id="stairChart" class="activity-chart"></canvas>
+    </section>
+    <section class='activity-chart hide' id='activeMinutesChartContainer'>
+      <canvas id="minutesChart" class="activity-chart"></canvas>
+    </section>
+    <section class='card-container-sleep' id='sleepCardContainer'>
+      <section class='main-card' id='sleepMainCard'>
+        <div class='main-card-middle-right'>
+          <h2 id='sleepContainer'>Sleep</h2>
+          <h3 id='averageHoursSlept'> Average Hours Slept:</h3>
+          <h3 id='averageSleepQuality'> Average Sleep Quality:</h3>
+          <h3 class='hide sleep-info-week' id=hoursSleptForSelectedWeek> Hours Slept For Selected Week:</h3>
+          <div>
+            <canvas id="sleepChartDay" class="sleep-chart-day" width="200" height="200"></canvas>
           </div>
-        </section>
+        </div>
       </section>
-      <section class='activity-chart' id='stepChartContainer'>
-        <canvas id="stepChart" class="activity-chart"></canvas>
-      </section>
-      <section class='activity-chart hide' id='stairChartContainer'>
-        <canvas id="stairChart" class="activity-chart"></canvas>
-        </section>
-        <section class='activity-chart hide' id='activeMinutesChartContainer'>
-        <canvas id="minutesChart" class="activity-chart"></canvas>
-        </section>
-      <section class='card-container-sleep' id='sleepCardContainer'>
-        <section class='main-card' id='sleepMainCard'>
-          <div class='main-card-middle-right'>
-            <h2 id='sleepContainer'>Sleep</h2>
-            <h3 id='averageHoursSlept'> Average Hours Slept:</h3>
-            <h3 id='averageSleepQuality'> Average Sleep Quality:</h3>
-            <h3 class='hide sleep-info-week' id=hoursSleptForSelectedWeek> Hours Slept For Selected Week:</h3>
-            <div>
-              <canvas id="sleepChartDay" class="sleep-chart-day" width="200" height="200"></canvas>
-            </div>
+    </section>
+    <section class='sleep-chart' id='sleepCardContainerChart'>
+      <canvas id="sleepChart" class="sleep-chart" width="200" height="345"></canvas>
+    </section>
+    <section class='card-container-hydration' id='hydrationCardContainer'>
+      <section class='main-card' id='hydrationMainCard'>
+        <div class='main-card-middle-left'>
+          <h2 id='hydrationContainer'>Hydration</h2>
+          <h3 id='averageOunces'> Average Daily water intake:</h3>
+          <h3 id='selectedDateHydration'> Intake for today:</h3>
+          <div>
+            <canvas id="hydrationChartDay" class="hydration-chart-day" width="200" height="200"></canvas>
           </div>
-        </section>
+        </div>
       </section>
-      <section class='sleep-chart' id='sleepCardContainerChart'>
-        <canvas id="sleepChart" class="sleep-chart" width="200" height="345"></canvas>
-        </section>
-      <section class='card-container-hydration' id='hydrationCardContainer'>
-        <section class='main-card' id='hydrationMainCard'>
-          <div class='main-card-middle-left'>
-            <h2 id='hydrationContainer'>Hydration</h2>
-            <h3 id='averageOunces'> Average Daily water intake:</h3>
-            <h3 id='selectedDateHydration'> Intake for today:</h3>
-            <div>
-              <canvas id="hydrationChartDay" class="hydration-chart-day" width="200" height="200"></canvas>
-            </div>
-          </div>
-        </section>
-      </section>
-      <section class='hydration-chart' id='hydrationCardContainerChart'>
-        <canvas id="hydrationChart" class="hydration-chart" width="200" height="345"></canvas>
-      </section>
-      <script type="text/javascript" src="../node_modules/js-datepicker/dist/datepicker.min.js"></script>
-      <script src ='https://cdn.jsdelivr.net/npm/chart.js@2.8.0'></script>
-      <script type="text/javascript" src="../data/users.js"></script>
-      <script type="text/javascript" src="../data/hydration.js"></script>
-      <script type="text/javascript" src="../data/sleep.js"></script>
-      <script type="text/javascript" src="../data/activity.js"></script>
-      <script type="text/javascript" src="../src/User.js"></script>
-      <script type="text/javascript" src="../src/UserRepository.js"></script>
-      <script type="text/javascript" src="../src/Hydration.js"></script>
-      <script type="text/javascript" src="../src/Sleep.js"></script>
-      <script type="text/javascript" src="../src/Activity.js"></script>
-      <script type="text/javascript" src="./scripts.js"></script>
-    </main>
+    </section>
+    <section class='hydration-chart' id='hydrationCardContainerChart'>
+      <canvas id="hydrationChart" class="hydration-chart" width="200" height="345"></canvas>
+    </section>
+    <script type="text/javascript" src="../node_modules/js-datepicker/dist/datepicker.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/chart.js@2.8.0'></script>
+    <script type="text/javascript" src="../data/users.js"></script>
+    <script type="text/javascript" src="../data/hydration.js"></script>
+    <script type="text/javascript" src="../data/sleep.js"></script>
+    <script type="text/javascript" src="../data/activity.js"></script>
+    <script type="text/javascript" src="../src/User.js"></script>
+    <script type="text/javascript" src="../src/UserRepository.js"></script>
+    <script type="text/javascript" src="../src/Hydration.js"></script>
+    <script type="text/javascript" src="../src/Sleep.js"></script>
+    <script type="text/javascript" src="../src/Activity.js"></script>
+    <script type="text/javascript" src="./scripts.js"></script>
+  </main>
 </body>
+
 </html>
