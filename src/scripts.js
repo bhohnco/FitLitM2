@@ -140,16 +140,21 @@ function showDropdown() {
 function showHydrationData() {
   averageOunces.innerText = `Average Daily water intake: ${hydration.calculateAverageOunces()}`
   selectedDateHydration.innerText = `Intake for ${selectedDate}: ${hydration.calculateDailyOunces(selectedDate)} fl oz`
+  if (hydration.calculateWeeklyOz(startDate) === "Please select a valid week") {
+    window.alert("Please select a valid week start date")
+  } else {
   createHydrationChart(startDate);
   createDayHydrationChart(startDate);
+ }
 }
 
 function showSleepData() {
   averageHoursSlept.innerText = `Average Hours Slept: ${sleep.calculateAverageHoursSleptPerDay()}`
   averageSleepQuality.innerText = `Average Sleep Quality: ${sleep.calculateAverageSleepQualityPerDay()}`
+  if (hydration.calculateWeeklyOz(startDate) !== "Please select a valid week") {
   createDaySleepChart(startDate);
   createSleepChart(startDate);
-
+  }
 }
 
 function showActivityData() {
@@ -158,7 +163,9 @@ function showActivityData() {
   activeMinutesByDay.innerText = `Minutes Active: ${activity.returnActiveMinutes(selectedDate)}, thats ${calculateActiveMinuteDifference()}`
   milesWalkedByDay.innerText = `Miles Walked: ${activity.returnMilesWalked(selectedDate)}`
   compareStairsClimbed.innerText = calculateStairsClimbedDifferece();
+  if (hydration.calculateWeeklyOz(startDate) !== "Please select a valid week") {
   createActivityChart(startDate);
+  }
 }
 
 function showStepChart() {
