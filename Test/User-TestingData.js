@@ -1,5 +1,4 @@
-const userTestingData = [
-  {
+const userTestingData = [{
     "id": 1,
     "name": "Luisa Hane",
     "address": "15195 Nakia Tunnel, Erdmanport VA 19901-1697",
@@ -42,8 +41,7 @@ const userTestingData = [
   }
 ]
 
-const hydationTestingData = [
-  {
+const hydationTestingData = [{
     "userID": 1,
     "date": "2019/06/15",
     "numOunces": 37
@@ -57,10 +55,10 @@ const hydationTestingData = [
     "userID": 3,
     "date": "2019/06/15",
     "numOunces": 47
-  }]
+  }
+]
 
-const sleepTestingData = [
-  {
+const sleepTestingData = [{
     "userID": 1,
     "date": "2019/06/15",
     "hoursSlept": 6.1,
@@ -77,10 +75,10 @@ const sleepTestingData = [
     "date": "2019/06/15",
     "hoursSlept": 10.8,
     "sleepQuality": 4.7
-  }]
+  }
+]
 
-const activityTestingData = [
-  {
+const activityTestingData = [{
     "userID": 1,
     "date": "2019/06/15",
     "numSteps": 3577,
@@ -100,6 +98,7 @@ const activityTestingData = [
     "numSteps": 7402,
     "minutesActive": 116,
     "flightsOfStairs": 33
-  }]
+  }
+]
 
 module.exports = userTestingData;

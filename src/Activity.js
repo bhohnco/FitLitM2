@@ -47,10 +47,10 @@ class Activity {
     let day2 = this.userActivity[findStartingDate + 1];
     let day1 = this.userActivity[findStartingDate];
     if (day7) {
-    const average = [day1.minutesActive + day2.minutesActive + day3.minutesActive + day4.minutesActive + day5.minutesActive + day6.minutesActive + day7.minutesActive] / 7;
-    return Math.round(average);
-  } else {
-    return "Please select a valid week"
+      const average = [day1.minutesActive + day2.minutesActive + day3.minutesActive + day4.minutesActive + day5.minutesActive + day6.minutesActive + day7.minutesActive] / 7;
+      return Math.round(average);
+    } else {
+      return "Please select a valid week"
     }
   }
 
@@ -64,13 +64,13 @@ class Activity {
   }
 
   findStepGoalExceeded() {
-     const stepGoalExceededDays = [];
-     this.userActivity.forEach((day, i) => {
-       if (this.user.dailyStepGoal < day.numSteps) {
-         stepGoalExceededDays.push(day.date);
-       }
-     });
-     return stepGoalExceededDays;
+    const stepGoalExceededDays = [];
+    this.userActivity.forEach((day, i) => {
+      if (this.user.dailyStepGoal < day.numSteps) {
+        stepGoalExceededDays.push(day.date);
+      }
+    });
+    return stepGoalExceededDays;
   }
 
   returnStairClimbingRecord() {
@@ -101,13 +101,20 @@ class Activity {
     let day2 = this.userActivity[findStartingDate + 1];
     let day1 = this.userActivity[findStartingDate]
     if (day7) {
-      return [[day1.date, day2.date, day3.date, day4.date,
-        day5.date, day6.date, day7.date],[day1.numSteps, day2.numSteps, day3.numSteps, day4.numSteps,
-        day5.numSteps, day6.numSteps, day7.numSteps],
+      return [
+        [day1.date, day2.date, day3.date, day4.date,
+          day5.date, day6.date, day7.date
+        ],
+        [day1.numSteps, day2.numSteps, day3.numSteps, day4.numSteps,
+          day5.numSteps, day6.numSteps, day7.numSteps
+        ],
         [day1.flightsOfStairs, day2.flightsOfStairs, day3.flightsOfStairs, day4.flightsOfStairs,
-          day5.flightsOfStairs, day6.flightsOfStairs, day7.flightsOfStairs],
-          [day1.minutesActive, day2.minutesActive, day3.minutesActive, day4.minutesActive,
-            day5.minutesActive, day6.minutesActive, day7.minutesActive]];
+          day5.flightsOfStairs, day6.flightsOfStairs, day7.flightsOfStairs
+        ],
+        [day1.minutesActive, day2.minutesActive, day3.minutesActive, day4.minutesActive,
+          day5.minutesActive, day6.minutesActive, day7.minutesActive
+        ]
+      ];
     } else {
       return 'Please select a valid week'
     }

@@ -26,7 +26,7 @@ class UserRepository {
         currentUserData = userDataObject;
       }
     });
-   return currentUserData;
+    return currentUserData;
   }
 
   returnAverageStepGoal() {
@@ -34,7 +34,7 @@ class UserRepository {
     this.users.forEach((user, i) => {
       totalUserStepGoal = totalUserStepGoal + user.dailyStepGoal;
     });
-    let averageStepGoal = totalUserStepGoal/this.users.length;
+    let averageStepGoal = totalUserStepGoal / this.users.length;
     return Math.round(averageStepGoal);
   }
 

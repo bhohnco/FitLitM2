@@ -5,7 +5,6 @@ const activity = new Activity(activityData, userRepository.currentUser);
 let selectedDate = '2019/09/22';
 let startDate = '2019/09/16';
 
-
 const userInfoButton = document.getElementById('userinfoButton');
 const userInfoDropdown = document.getElementById('userInfoPage');
 const userEmail = document.getElementById('userinfoEmail');
@@ -143,17 +142,17 @@ function showHydrationData() {
   if (hydration.calculateWeeklyOz(startDate) === "Please select a valid week") {
     window.alert("Please select a valid week start date")
   } else {
-  createHydrationChart(startDate);
-  createDayHydrationChart(startDate);
- }
+    createHydrationChart(startDate);
+    createDayHydrationChart(startDate);
+  }
 }
 
 function showSleepData() {
   averageHoursSlept.innerText = `Average Hours Slept: ${sleep.calculateAverageHoursSleptPerDay()}`
   averageSleepQuality.innerText = `Average Sleep Quality: ${sleep.calculateAverageSleepQualityPerDay()}`
   if (hydration.calculateWeeklyOz(startDate) !== "Please select a valid week") {
-  createDaySleepChart(startDate);
-  createSleepChart(startDate);
+    createDaySleepChart(startDate);
+    createSleepChart(startDate);
   }
 }
 
@@ -164,7 +163,7 @@ function showActivityData() {
   milesWalkedByDay.innerText = `Miles Walked: ${activity.returnMilesWalked(selectedDate)}`
   compareStairsClimbed.innerText = calculateStairsClimbedDifferece();
   if (hydration.calculateWeeklyOz(startDate) !== "Please select a valid week") {
-  createActivityChart(startDate);
+    createActivityChart(startDate);
   }
 }
 
@@ -208,7 +207,7 @@ function createActivityChart(startDate) {
       }]
     },
     options: {
-      events:['click'],
+      events: ['click'],
       responsive: true,
       scales: {
         yAxes: [{
@@ -256,7 +255,7 @@ function createActivityChart(startDate) {
       }]
     },
     options: {
-      events:['click'],
+      events: ['click'],
       responsive: true,
       scales: {
         yAxes: [{
@@ -304,7 +303,7 @@ function createActivityChart(startDate) {
       }]
     },
     options: {
-      events:['click'],
+      events: ['click'],
       responsive: true,
       scales: {
         yAxes: [{
@@ -342,34 +341,33 @@ function createSleepChart(startDate) {
   let sleepDataChart = new Chart(sleepChart, {
     type: 'line',
     beginAtZero: true,
-    data:
-        {
-          labels: weeklyHoursSlept[1],
-          datasets: [{
-            axis: 'y',
-            label: 'Hours Slept',
-            data: weeklyHoursSlept,
-            data: weeklyHoursSlept[0],
-            fill: false,
-            backgroundColor: "#914aef",
-            borderColor: [
-              'rgb(54, 162, 235)'
-            ],
-            borderWidth: 1
-          }, {
-            axis: 'y',
-            label: 'Sleep Quality',
-            data: weeklySleepQuality,
-            fill: false,
-            backgroundColor: "#ee30e0",
-            borderColor: [
-              'rgb(153,102,255)'
-            ],
-            borderWidth: 1
-          }, ]
-        },
+    data: {
+      labels: weeklyHoursSlept[1],
+      datasets: [{
+        axis: 'y',
+        label: 'Hours Slept',
+        data: weeklyHoursSlept,
+        data: weeklyHoursSlept[0],
+        fill: false,
+        backgroundColor: "#914aef",
+        borderColor: [
+          'rgb(54, 162, 235)'
+        ],
+        borderWidth: 1
+      }, {
+        axis: 'y',
+        label: 'Sleep Quality',
+        data: weeklySleepQuality,
+        fill: false,
+        backgroundColor: "#ee30e0",
+        borderColor: [
+          'rgb(153,102,255)'
+        ],
+        borderWidth: 1
+      }, ]
+    },
     options: {
-      events:['click'],
+      events: ['click'],
       responsive: true,
       scales: {
         yAxes: [{
@@ -408,23 +406,22 @@ function createDaySleepChart(startDate) {
   let sleepDataDayChart = new Chart(sleepChartDay, {
     type: 'bar',
     beginAtZero: true,
-    data:
-        {
-          labels: ["Hours Slept", "Sleep Quality"],
-          datasets: [{
-            axis: 'y',
-            backgroundColor: ["#914AEF", "#ee30e0"],
-            data: [dailyHoursSlept, dailySleepQuality],
-            fill: false,
-            borderColor: [
-              'rgb(255, 99, 132)',
-              'rgb(255, 159, 64)'
-            ],
-            borderWidth: 3,
-          }, ]
-        },
+    data: {
+      labels: ["Hours Slept", "Sleep Quality"],
+      datasets: [{
+        axis: 'y',
+        backgroundColor: ["#914AEF", "#ee30e0"],
+        data: [dailyHoursSlept, dailySleepQuality],
+        fill: false,
+        borderColor: [
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)'
+        ],
+        borderWidth: 3,
+      }, ]
+    },
     options: {
-      events:['click'],
+      events: ['click'],
       responsive: true,
       legend: {
         display: false
@@ -480,7 +477,7 @@ function createHydrationChart(startDate) {
       }]
     },
     options: {
-      events:['click'],
+      events: ['click'],
       responsive: true,
       legend: {
         display: true,
@@ -523,22 +520,21 @@ function createDayHydrationChart(startDate) {
   let hydrationDataDayChart = new Chart(hydrationChartDay, {
     type: 'bar',
     beginAtZero: true,
-    data:
-        {
-          labels: ["Average OZ", "OZ on date"],
-          datasets: [{
-            axis: 'y',
-            backgroundColor: ["#206ee3", "#05318c"],
-            data: [averageOunces, dailyOunces],
-            borderColor: [
-              'rgb(99,219,255)',
-              'rgb(64,128,255)'
-            ],
-            borderWidth: 3,
-          }, ]
-        },
+    data: {
+      labels: ["Average OZ", "OZ on date"],
+      datasets: [{
+        axis: 'y',
+        backgroundColor: ["#206ee3", "#05318c"],
+        data: [averageOunces, dailyOunces],
+        borderColor: [
+          'rgb(99,219,255)',
+          'rgb(64,128,255)'
+        ],
+        borderWidth: 3,
+      }, ]
+    },
     options: {
-      events:['click'],
+      events: ['click'],
       responsive: true,
       legend: {
         display: false
