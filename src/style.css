@@ -38,9 +38,11 @@ main {
 }
 
 .user-info-page {
-    background-color: #656572;
+    background-color: #222234;
     color: white;
-    margin-left: 55%;
+    border-style: solid;
+    border-color: white;
+    margin-left: 40%;
     margin-top: -1.2%;
     position: relative;
     text-align: center;
