@@ -81,6 +81,7 @@ class Sleep {
     }
   }
 
+
   calculateAllUsersSleepQuality() {
     const allUserSleepQuality = this.userSleepData.reduce((qualityTotal, sleep) => {
       qualityTotal += sleep.sleepQuality;
