@@ -8,6 +8,8 @@ let startDate = '2019/09/16';
 const userInfoButton = document.getElementById('userinfoButton');
 const userInfoDropdown = document.getElementById('userInfoPage');
 const userEmail = document.getElementById('userinfoEmail');
+const userStrideLength = document.getElementById('userStrideLength');
+const friendsID = document.getElementById('friends');
 const activityHeader = document.getElementById('activityContainer');
 const userStepGoal = document.getElementById('userinfoGoal');
 const averageStepGoal = document.getElementById('averageStepGoal');
@@ -79,6 +81,8 @@ function displayUserInfo() {
   userNameDisplay.innerText = `Welcome ${userRepository.currentUser.returnFirstName()}`;
   userEmail.innerText = `Email Address: ${userRepository.currentUser.email};`
   userStepGoal.innerText = `Daily Step Goal: ${userRepository.currentUser.dailyStepGoal}`;
+  userStrideLength.innerText = `Stride Length: ${userRepository.currentUser.strideLength}`;
+  friendsID.innerText = `Friends ID's: ${userRepository.currentUser.friends}`;
   averageStepGoal.innerText = calculateStepGoalDifference();
 }
 
